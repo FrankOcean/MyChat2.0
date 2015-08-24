@@ -26,6 +26,7 @@
 		B08FB94B1B8AFF4D0097FEEA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B08FB94A1B8AFF4D0097FEEA /* libxml2.dylib */; };
 		B08FB9531B8B080F0097FEEA /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = B08FB9501B8B080F0097FEEA /* MBProgressHUD+Add.m */; };
 		B08FB9541B8B080F0097FEEA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B08FB9521B8B080F0097FEEA /* MBProgressHUD.m */; };
+		B08FB9561B8B09820097FEEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B08FB9551B8B09820097FEEA /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		B08FB9501B8B080F0097FEEA /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		B08FB9511B8B080F0097FEEA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		B08FB9521B8B080F0097FEEA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B08FB9551B8B09820097FEEA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 			children = (
 				B08FB8AB1B8AF6E80097FEEA /* Login.storyboard */,
 				B08FB8B01B8AF6E80097FEEA /* LaunchScreen.xib */,
+				B08FB9551B8B09820097FEEA /* Main.storyboard */,
 			);
 			name = Xib;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B08FB8AD1B8AF6E80097FEEA /* Login.storyboard in Resources */,
+				B08FB9561B8B09820097FEEA /* Main.storyboard in Resources */,
 				B08FB8B21B8AF6E80097FEEA /* LaunchScreen.xib in Resources */,
 				B08FB93B1B8AFE980097FEEA /* EaseMob.bundle in Resources */,
 				B08FB8AF1B8AF6E80097FEEA /* Images.xcassets in Resources */,

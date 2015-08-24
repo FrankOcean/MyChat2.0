@@ -26,11 +26,21 @@
 
 - (IBAction)loginAction{
 
-    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:@"vgios1" password:@"123456" completion:^(NSDictionary *loginInfo, EMError *error) {
-        NSLog(@"%@",[NSThread currentThread]);
+    [MBProgressHUD showMessag:@"登录中" toView:nil];
+    
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:_usernameField.text password:_passwordField.text completion:^(NSDictionary *loginInfo, EMError *error) {
+        [MBProgressHUD hideHUDForView:nil animated:NO];
+        
+        NSLog(@"-------%@",[NSThread currentThread]);
                 NSLog(@"%@",loginInfo);
         if (error) {
+            [MBProgressHUD showMessag:error.description toView:nil];
             NSLog(@"登录失败%@",error);
+        }else{
+        
+            // 进度主界面
+            self.view.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+            
         }
         
     } onQueue:nil];
@@ -42,7 +52,7 @@
     [MBProgressHUD showSuccess:@"注册中..." toView:nil];
     [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:_usernameField.text password:_passwordField.text withCompletion:^(NSString *username, NSString *password, EMError *error) {
         
-        [MBProgressHUD hideHUDForView:nil animated:YES];
+        [MBProgressHUD hideHUDForView:nil animated:NO];
         
         if (error) {
             [MBProgressHUD showError:error.description toView:nil];

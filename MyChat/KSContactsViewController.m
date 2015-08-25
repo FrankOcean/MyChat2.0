@@ -29,8 +29,19 @@
     KSLog(@"%@",self.friendsList);
     
     // 3.如获本地数据库没联系人，从服务器获取
-    __weak typeof(self) weakSelf = self;
     if (self.friendsList.count == 0) {
+        [self getFriendsListFromServer];
+    }
+    
+//    [self.refreshControl addTarget:self action:<#(SEL)#> forControlEvents:<#(UIControlEvents)#>]
+    
+    
+    
+}
+
+-(void)getFriendsListFromServer{
+    __weak typeof(self) weakSelf = self;
+    
         [[EaseMob sharedInstance].chatManager asyncFetchBuddyListWithCompletion:^(NSArray *buddyList, EMError *error) {
             if (error) {
                 KSLog(@"%@",error);
@@ -42,12 +53,10 @@
                 [weakSelf.tableView reloadData];
             }
             
+            [weakSelf.refreshControl endRefreshing];
         } onQueue:nil];
-    }
-    
+
 }
-
-
 #pragma mark - 表格数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.friendsList.count;
@@ -72,6 +81,9 @@
 -(void)didRejectedByBuddy:(NSString *)username{
     NSString *msg = [username stringByAppendingString:@" 用户拒绝你的好友请求"];
     [EMAlertView showAlertWithTitle:@"好友接收提醒" message:msg];
+}
+- (IBAction)beginRefreshAction:(UIRefreshControl *)rc {
+    [self getFriendsListFromServer];
 }
 
 @end

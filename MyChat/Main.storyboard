@@ -98,6 +98,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="CgO-MC-1JF">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle"/>
+                        <connections>
+                            <action selector="beginRefreshAction:" destination="3eW-RG-QRY" eventType="valueChanged" id="iSf-om-udt"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2P9-Xb-Vrk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

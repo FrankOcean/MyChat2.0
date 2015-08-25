@@ -218,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				B0C004261B8C60BD00A360DA /* KSChatManagerTool */,
-				B097ECD31B8C5A7D0087A63D /* Contacts */,
+				B097ECD31B8C5A7D0087A63D /* Contacts【联系人】 */,
 				B0EEDE761B8C13D4002F1199 /* Recent【最近】 */,
 				B08FB94D1B8B07D00097FEEA /* Lib */,
 				B08FB8CA1B8AF9D40097FEEA /* Xib */,
@@ -588,12 +588,12 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
-		B097ECD31B8C5A7D0087A63D /* Contacts */ = {
+		B097ECD31B8C5A7D0087A63D /* Contacts【联系人】 */ = {
 			isa = PBXGroup;
 			children = (
 				B097ECD41B8C5A890087A63D /* Controller */,
 			);
-			name = Contacts;
+			name = "Contacts【联系人】";
 			sourceTree = "<group>";
 		};
 		B097ECD41B8C5A890087A63D /* Controller */ = {

@@ -85,7 +85,27 @@ static KSChatManagerTool *instance;
     }
 }
 
+#pragma mark 接收到好友请求
+-(void)didReceiveBuddyRequest:(NSString *)username message:(NSString *)message{
+    
+    NSString *msg = [NSString stringWithFormat:@"%@ 请求加为好友\n附加信息:%@",username,message];
+    [EMAlertView showAlertWithTitle:@"好友请求" message:msg completionBlock:^(NSUInteger buttonIndex, EMAlertView *alertView) {
+        if (buttonIndex == 0) {
+            [[EaseMob sharedInstance].chatManager rejectBuddyRequest:username reason:@"你是谁" error:nil];
+        }else{
+            [[EaseMob sharedInstance].chatManager acceptBuddyRequest:username error:nil];
+        }
+        
+    } cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意"];
+    
+}
 
+#pragma mark 被移除
+- (void)didRemovedByBuddy:(NSString *)username{
+
+    NSString *msg = [NSString stringWithFormat:@"你已经被%@ 移除好友列表",username];
+    [EMAlertView showAlertWithTitle:@"提示" message:msg];
+}
 #pragma mark - Login Delegate
 -(void)willAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error{
     for (id delegate in self.delegates) {
@@ -128,6 +148,7 @@ static KSChatManagerTool *instance;
         }
     }
 }
+
 
 
 @end

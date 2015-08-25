@@ -106,6 +106,18 @@ static KSChatManagerTool *instance;
     NSString *msg = [NSString stringWithFormat:@"你已经被%@ 移除好友列表",username];
     [EMAlertView showAlertWithTitle:@"提示" message:msg];
 }
+
+#pragma mark 通讯录改变
+- (void)didUpdateBuddyList:(NSArray *)buddyList
+            changedBuddies:(NSArray *)changedBuddies
+                     isAdd:(BOOL)isAdd{
+    for (id delegate in self.delegates) {
+        if ([delegate respondsToSelector:@selector(didUpdateBuddyList:changedBuddies:isAdd:)]) {
+            [delegate didUpdateBuddyList:buddyList changedBuddies:changedBuddies isAdd:isAdd];
+        }
+    }
+}
+
 #pragma mark - Login Delegate
 -(void)willAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error{
     for (id delegate in self.delegates) {

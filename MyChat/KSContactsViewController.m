@@ -33,28 +33,39 @@
         [self getFriendsListFromServer];
     }
     
-//    [self.refreshControl addTarget:self action:<#(SEL)#> forControlEvents:<#(UIControlEvents)#>]
-    
-    
+ 
+}
+
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        EMBuddy *buddy = self.friendsList[indexPath.row];
+        [[EaseMob sharedInstance].chatManager removeBuddy:buddy.username removeFromRemote:YES error:nil];
+    }
+}
+
+-(void)didRemovedByBuddy:(NSString *)username{
     
 }
+
 
 -(void)getFriendsListFromServer{
     __weak typeof(self) weakSelf = self;
     
-        [[EaseMob sharedInstance].chatManager asyncFetchBuddyListWithCompletion:^(NSArray *buddyList, EMError *error) {
-            if (error) {
-                KSLog(@"%@",error);
-                [EMAlertView showAlertWithTitle:@"xx" message:error.description];
-            }else{
-                KSLog(@"%@",buddyList);
-                weakSelf.friendsList = buddyList;
-                // 刷新表格
-                [weakSelf.tableView reloadData];
-            }
-            
-            [weakSelf.refreshControl endRefreshing];
-        } onQueue:nil];
+    [[EaseMob sharedInstance].chatManager asyncFetchBuddyListWithCompletion:^(NSArray *buddyList, EMError *error) {
+        if (error) {
+            KSLog(@"%@",error);
+            [EMAlertView showAlertWithTitle:@"xx" message:error.description];
+        }else{
+            KSLog(@"%@",buddyList);
+            weakSelf.friendsList = buddyList;
+            // 刷新表格
+            [weakSelf.tableView reloadData];
+        }
+        
+        [weakSelf.refreshControl endRefreshing];
+    } onQueue:nil];
 
 }
 #pragma mark - 表格数据源方法
@@ -82,8 +93,27 @@
     NSString *msg = [username stringByAppendingString:@" 用户拒绝你的好友请求"];
     [EMAlertView showAlertWithTitle:@"好友接收提醒" message:msg];
 }
+
 - (IBAction)beginRefreshAction:(UIRefreshControl *)rc {
-    [self getFriendsListFromServer];
+    //[self getFriendsListFromServer];
+    // 重新赋值数据源
+    self.friendsList = [[EaseMob sharedInstance].chatManager buddyList];
+    // 刷新
+    [self.tableView reloadData];
+    
+    // 结束刷新
+    [self.refreshControl endRefreshing];
+    
 }
 
+
+- (void)didUpdateBuddyList:(NSArray *)buddyList
+            changedBuddies:(NSArray *)changedBuddies
+                     isAdd:(BOOL)isAdd{
+    // 重新赋值数据源
+    self.friendsList = buddyList;
+    // 刷新
+    [self.tableView reloadData];
+    
+}
 @end

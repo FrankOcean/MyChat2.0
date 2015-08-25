@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="-1028" y="-706"/>
         </scene>
-        <!--Root View Controller-->
+        <!--通讯录-->
         <scene sceneID="xE1-qT-h6Y">
             <objects>
-                <tableViewController id="3eW-RG-QRY" sceneMemberID="viewController">
+                <tableViewController id="3eW-RG-QRY" userLabel="通讯录" customClass="KSContactsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="570-c9-OhK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,16 +91,76 @@
                             <outlet property="delegate" destination="3eW-RG-QRY" id="E0l-XU-Drl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="4o7-2E-Bci"/>
+                    <navigationItem key="navigationItem" title="通讯录" id="4o7-2E-Bci">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="vWN-KI-2Hl">
+                            <connections>
+                                <segue destination="nJ1-Gf-nRI" kind="show" id="IbL-TJ-n5R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2P9-Xb-Vrk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-612" y="-10"/>
         </scene>
-        <!--通讯录-->
+        <!--添加好友Or组-->
+        <scene sceneID="T0v-bB-cOT">
+            <objects>
+                <viewController id="nJ1-Gf-nRI" userLabel="添加好友Or组" customClass="KSAddFriendOrGroupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dw2-W1-Vzh"/>
+                        <viewControllerLayoutGuide type="bottom" id="nF7-4z-jrN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wLr-8J-MT6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入好友帐号" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="emw-pB-paP">
+                                <rect key="frame" x="54" y="83" width="212" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="D9u-fd-ZPn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNu-0A-Ufx">
+                                <rect key="frame" x="54" y="121" width="212" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="W0v-iB-eA4"/>
+                                </constraints>
+                                <state key="normal" title="添加">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="AddAction:" destination="nJ1-Gf-nRI" eventType="touchUpInside" id="Z3B-SC-81E"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="VNu-0A-Ufx" secondAttribute="trailing" constant="54" id="6ad-kg-WoA"/>
+                            <constraint firstItem="emw-pB-paP" firstAttribute="leading" secondItem="wLr-8J-MT6" secondAttribute="leading" constant="54" id="Hvc-AY-AWK"/>
+                            <constraint firstItem="VNu-0A-Ufx" firstAttribute="top" secondItem="emw-pB-paP" secondAttribute="bottom" constant="8" id="jdi-LW-oNk"/>
+                            <constraint firstAttribute="trailing" secondItem="emw-pB-paP" secondAttribute="trailing" constant="54" id="l7d-GB-1vN"/>
+                            <constraint firstItem="emw-pB-paP" firstAttribute="top" secondItem="dw2-W1-Vzh" secondAttribute="bottom" constant="19" id="tON-9l-TkJ"/>
+                            <constraint firstItem="VNu-0A-Ufx" firstAttribute="leading" secondItem="wLr-8J-MT6" secondAttribute="leading" constant="54" id="zlT-hl-AYp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="添加好友" id="eLp-la-PbK"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="friendName" destination="emw-pB-paP" id="RwG-eS-rDv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EiE-FX-LHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-217" y="-10"/>
+        </scene>
+        <!--Nav-通讯录-->
         <scene sceneID="HVv-6I-mTM">
             <objects>
-                <navigationController id="hJ2-du-bUx" userLabel="通讯录" sceneMemberID="viewController">
+                <navigationController id="hJ2-du-bUx" userLabel="Nav-通讯录" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="WZD-pQ-Zra"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="urg-OL-l39">

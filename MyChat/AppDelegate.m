@@ -21,7 +21,11 @@
      apnsCertName: iOS中推送证书名称。制作与上传推送证书
      */
     //环信的初始化
-    [[EaseMob sharedInstance] registerSDKWithAppKey:@"vgios#hxchat" apnsCertName:@""];
+//    [[EaseMob sharedInstance] registerSDKWithAppKey:@"vgios#hxchat" apnsCertName:@"" otherConfig:<#(NSDictionary *)#>];
+    
+    //环信的初始化 并隐藏日志输出
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"vgios#hxchat" apnsCertName:@"" otherConfig:@{kSDKConfigEnableConsoleLogger:@(NO)}];
+    
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     

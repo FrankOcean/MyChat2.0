@@ -27,6 +27,10 @@
 		B08FB9531B8B080F0097FEEA /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = B08FB9501B8B080F0097FEEA /* MBProgressHUD+Add.m */; };
 		B08FB9541B8B080F0097FEEA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B08FB9521B8B080F0097FEEA /* MBProgressHUD.m */; };
 		B08FB9561B8B09820097FEEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B08FB9551B8B09820097FEEA /* Main.storyboard */; };
+		B097ECD71B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097ECD61B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m */; };
+		B097ECDB1B8C5EFD0087A63D /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B097ECDA1B8C5EFD0087A63D /* EMAlertView.m */; };
+		B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C004281B8C60E900A360DA /* KSChatManagerTool.m */; };
+		B0C0042C1B8C6AC200A360DA /* KSContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C0042B1B8C6AC200A360DA /* KSContactsViewController.m */; };
 		B0EEDE7C1B8C1416002F1199 /* KSRecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EEDE7B1B8C1416002F1199 /* KSRecentViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -125,8 +129,6 @@
 		B08FB91C1B8AFE980097FEEA /* IEMMessageBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEMMessageBody.h; sourceTree = "<group>"; };
 		B08FB91E1B8AFE980097FEEA /* EaseMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMob.h; sourceTree = "<group>"; };
 		B08FB91F1B8AFE980097FEEA /* EaseMobHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMobHeaders.h; sourceTree = "<group>"; };
-		B08FB9211B8AFE980097FEEA /* EaseMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMob.h; sourceTree = "<group>"; };
-		B08FB9221B8AFE980097FEEA /* EaseMobHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMobHeaders.h; sourceTree = "<group>"; };
 		B08FB9241B8AFE980097FEEA /* commonDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commonDefs.h; sourceTree = "<group>"; };
 		B08FB9271B8AFE980097FEEA /* IDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDeviceManagerDelegate.h; sourceTree = "<group>"; };
 		B08FB9291B8AFE980097FEEA /* EMDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDeviceManagerDelegate.h; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 		B08FB9511B8B080F0097FEEA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		B08FB9521B8B080F0097FEEA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		B08FB9551B8B09820097FEEA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B097ECD51B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAddFriendOrGroupViewController.h; sourceTree = "<group>"; };
+		B097ECD61B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAddFriendOrGroupViewController.m; sourceTree = "<group>"; };
+		B097ECD91B8C5EFD0087A63D /* EMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAlertView.h; sourceTree = "<group>"; };
+		B097ECDA1B8C5EFD0087A63D /* EMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAlertView.m; sourceTree = "<group>"; };
+		B0C004271B8C60E900A360DA /* KSChatManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatManagerTool.h; sourceTree = "<group>"; };
+		B0C004281B8C60E900A360DA /* KSChatManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatManagerTool.m; sourceTree = "<group>"; };
+		B0C0042A1B8C6AC200A360DA /* KSContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSContactsViewController.h; sourceTree = "<group>"; };
+		B0C0042B1B8C6AC200A360DA /* KSContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSContactsViewController.m; sourceTree = "<group>"; };
 		B0EEDE751B8C12BE002F1199 /* MyChat.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyChat.pch; sourceTree = "<group>"; };
 		B0EEDE7A1B8C1416002F1199 /* KSRecentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSRecentViewController.h; sourceTree = "<group>"; };
 		B0EEDE7B1B8C1416002F1199 /* KSRecentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSRecentViewController.m; sourceTree = "<group>"; };
@@ -207,6 +217,8 @@
 		B08FB8A01B8AF6E80097FEEA /* MyChat */ = {
 			isa = PBXGroup;
 			children = (
+				B0C004261B8C60BD00A360DA /* KSChatManagerTool */,
+				B097ECD31B8C5A7D0087A63D /* Contacts */,
 				B0EEDE761B8C13D4002F1199 /* Recent【最近】 */,
 				B08FB94D1B8B07D00097FEEA /* Lib */,
 				B08FB8CA1B8AF9D40097FEEA /* Xib */,
@@ -297,7 +309,6 @@
 				B08FB8CD1B8AFE980097FEEA /* CallService */,
 				B08FB8DC1B8AFE980097FEEA /* ChatService */,
 				B08FB91D1B8AFE980097FEEA /* EaseMobClientSDK */,
-				B08FB9201B8AFE980097FEEA /* EaseMobClientSDKLite */,
 				B08FB9231B8AFE980097FEEA /* Utility */,
 			);
 			path = include;
@@ -467,15 +478,6 @@
 			path = EaseMobClientSDK;
 			sourceTree = "<group>";
 		};
-		B08FB9201B8AFE980097FEEA /* EaseMobClientSDKLite */ = {
-			isa = PBXGroup;
-			children = (
-				B08FB9211B8AFE980097FEEA /* EaseMob.h */,
-				B08FB9221B8AFE980097FEEA /* EaseMobHeaders.h */,
-			);
-			path = EaseMobClientSDKLite;
-			sourceTree = "<group>";
-		};
 		B08FB9231B8AFE980097FEEA /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +570,7 @@
 		B08FB94D1B8B07D00097FEEA /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				B097ECD81B8C5EFD0087A63D /* EMAlertView */,
 				B08FB94E1B8B080F0097FEEA /* MBProgressHUD */,
 				B08FB8CB1B8AFE980097FEEA /* EaseMobSDK */,
 			);
@@ -583,6 +586,43 @@
 				B08FB9521B8B080F0097FEEA /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		B097ECD31B8C5A7D0087A63D /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				B097ECD41B8C5A890087A63D /* Controller */,
+			);
+			name = Contacts;
+			sourceTree = "<group>";
+		};
+		B097ECD41B8C5A890087A63D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B0C0042A1B8C6AC200A360DA /* KSContactsViewController.h */,
+				B0C0042B1B8C6AC200A360DA /* KSContactsViewController.m */,
+				B097ECD51B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.h */,
+				B097ECD61B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B097ECD81B8C5EFD0087A63D /* EMAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				B097ECD91B8C5EFD0087A63D /* EMAlertView.h */,
+				B097ECDA1B8C5EFD0087A63D /* EMAlertView.m */,
+			);
+			path = EMAlertView;
+			sourceTree = "<group>";
+		};
+		B0C004261B8C60BD00A360DA /* KSChatManagerTool */ = {
+			isa = PBXGroup;
+			children = (
+				B0C004271B8C60E900A360DA /* KSChatManagerTool.h */,
+				B0C004281B8C60E900A360DA /* KSChatManagerTool.m */,
+			);
+			name = KSChatManagerTool;
 			sourceTree = "<group>";
 		};
 		B0EEDE761B8C13D4002F1199 /* Recent【最近】 */ = {
@@ -724,8 +764,12 @@
 				B08FB8A71B8AF6E80097FEEA /* AppDelegate.m in Sources */,
 				B08FB9541B8B080F0097FEEA /* MBProgressHUD.m in Sources */,
 				B08FB8A41B8AF6E80097FEEA /* main.m in Sources */,
+				B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */,
+				B097ECD71B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m in Sources */,
+				B097ECDB1B8C5EFD0087A63D /* EMAlertView.m in Sources */,
 				B08FB9531B8B080F0097FEEA /* MBProgressHUD+Add.m in Sources */,
 				B0EEDE7C1B8C1416002F1199 /* KSRecentViewController.m in Sources */,
+				B0C0042C1B8C6AC200A360DA /* KSContactsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,8 +19,9 @@
     [super viewDidLoad];
     self.title = @"xxx";
     //1.设置 "聊天管理器" 代理
-    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:dispatch_get_main_queue()];
+//    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:dispatch_get_main_queue()];
 
+    [[KSChatManagerTool sharedTool] addDelegate:self];
     if ([[EaseMob sharedInstance].chatManager isAutoLoginEnabled]) {
         if([[EaseMob sharedInstance].chatManager isLoggedIn]){
         
@@ -30,7 +31,9 @@
 }
 
 
-
+-(void)dealloc{
+    [[KSChatManagerTool sharedTool] removeDelegate:self];
+}
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;

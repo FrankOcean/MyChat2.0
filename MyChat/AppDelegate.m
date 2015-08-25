@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "EaseMob.h"
-@interface AppDelegate ()
+@interface AppDelegate ()<EMChatManagerDelegate>
 
 @end
 
@@ -23,8 +23,19 @@
     //环信的初始化
     [[EaseMob sharedInstance] registerSDKWithAppKey:@"vgios#hxchat" apnsCertName:@""];
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    
+    
+    // 如果设置了自动登录，直接进入主界面
+    if([[EaseMob sharedInstance].chatManager isAutoLoginEnabled]){
+        KSLog(@"自动登录，直接进入主界面");
+        self.window.rootViewController = [UIStoryboard storyboardWithName:@"Main" bundle:nil].instantiateInitialViewController;
+    }else{
+        KSLog(@"未登录");
+    }
     return YES;
 }
+
+
 
 // App进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -43,5 +54,6 @@
 {
     [[EaseMob sharedInstance] applicationWillTerminate:application];
 }
+
 
 @end

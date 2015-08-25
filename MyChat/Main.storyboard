@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-1978" y="-10"/>
         </scene>
-        <!--Root View Controller-->
+        <!--最近-->
         <scene sceneID="fKS-qb-0p3">
             <objects>
-                <tableViewController id="Pnd-5v-T7o" sceneMemberID="viewController">
+                <tableViewController id="Pnd-5v-T7o" userLabel="最近" customClass="KSRecentViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CEL-C9-nxq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="-632" y="-706"/>
         </scene>
-        <!--最近-->
+        <!--Nav-最近-->
         <scene sceneID="4pi-tA-BNz">
             <objects>
-                <navigationController id="DUQ-Fr-dZP" userLabel="最近" sceneMemberID="viewController">
+                <navigationController id="DUQ-Fr-dZP" userLabel="Nav-最近" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="mostRecent" id="miD-B5-8pH"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8om-fz-Jtm">

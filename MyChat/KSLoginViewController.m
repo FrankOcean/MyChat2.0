@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
 }
 
 - (IBAction)loginAction{
@@ -36,11 +38,14 @@
         if (error) {
             [MBProgressHUD showMessag:error.description toView:nil];
             NSLog(@"登录失败%@",error);
+          
         }else{
         
             // 进度主界面
             self.view.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
-            
+           
+            // 调自动登录
+            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
         }
         
     } onQueue:nil];

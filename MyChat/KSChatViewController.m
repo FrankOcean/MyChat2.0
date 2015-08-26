@@ -14,7 +14,7 @@
 static NSString *receiverCellID = @"ReceiverCell";
 static NSString *senderCellID = @"SenderCell";
 
-@interface KSChatViewController ()<UITextViewDelegate,IEMChatProgressDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface KSChatViewController ()<UITextViewDelegate,IEMChatProgressDelegate,UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputToolBarBottomConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -50,6 +50,9 @@ static NSString *senderCellID = @"SenderCell";
     self.tableView.estimatedRowHeight = 90;
     // 3.加载聊天消息
     [self loadChatMessages];
+    
+    // 添加代理
+    [[KSChatManagerTool sharedTool] addDelegate:self];
 }
 
 -(void)loadChatMessages{
@@ -63,9 +66,12 @@ static NSString *senderCellID = @"SenderCell";
         long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000 + 1;
         
         NSArray *msgFromDB = [self.conversation loadNumbersOfMessages:KSCountPerLoad before:timestamp];
-        KSLog(@"%@",[msgFromDB[0] class]);
-        // 3.添加到数据源中
-        [self.messages addObjectsFromArray:msgFromDB];
+        if (msgFromDB.count > 0) {
+            // 3.添加到数据源中
+            [self.messages addObjectsFromArray:msgFromDB];
+        }
+       
+       
     }else{
         KSLog(@"获取会话管理者对象失败");
     }
@@ -100,6 +106,8 @@ static NSString *senderCellID = @"SenderCell";
     self.inputToolBarBottomConstraint.constant = kbEndFrm.size.height;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [self scrollToBottom];
     }];
 }
 
@@ -113,6 +121,7 @@ static NSString *senderCellID = @"SenderCell";
 #pragma mark 移除通知
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[KSChatManagerTool sharedTool] removeDelegate:self];
 }
 
 #pragma mark - UITextView代理
@@ -139,6 +148,10 @@ static NSString *senderCellID = @"SenderCell";
     // 消息类型 《私聊》
     message.messageType = eMessageTypeChat;
     
+    // 刷新表情
+    [self.messages addObject:message];
+    [self.tableView reloadData];
+    [self scrollToBottom];
     
     [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:self];
     
@@ -179,5 +192,18 @@ static NSString *senderCellID = @"SenderCell";
     return [self.chatCellTool cellHeight];
 }
 
+
+#pragma mark - chatManager代理
+- (void)didReceiveMessage:(EMMessage *)message{
+    // 如果是当前聊天的用户，才要刷新
+    NSString *loginUser = [[EaseMob sharedInstance].chatManager loginInfo][@"username"];
+    KSLog(@"from: %@ to: %@",self.buddy.username,loginUser);
+    if (![message.from isEqualToString:self.buddy.username] && ![message.to isEqualToString:loginUser]) {
+        return;
+    }
+    [self.messages addObject:message];
+    [self.tableView reloadData];
+    [self scrollToBottom];
+}
 
 @end

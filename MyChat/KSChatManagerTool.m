@@ -161,6 +161,14 @@ static KSChatManagerTool *instance;
     }
 }
 
-
+-(void)didReceiveMessage:(EMMessage *)message{
+    
+    for (id delegate in self.delegates) {
+        if ([delegate respondsToSelector:@selector(didReceiveMessage:)]) {
+            [delegate didReceiveMessage:message];
+        }
+    }
+    
+}
 
 @end

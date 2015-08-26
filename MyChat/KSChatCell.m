@@ -32,9 +32,21 @@
             self.chatTextLabel.text = @"语音或者图片";
         }
         
+        [self.contentView bringSubviewToFront:self.chatTextLabel];
+        
     }
     
 }
 
+
+-(CGFloat)cellHeight{
+    // 重新布局子控件
+    [self layoutIfNeeded];
+//    KSLog(@"%@",NSStringFromCGRect(self.chatTextLabel.bounds));
+    
+    CGFloat label = self.chatTextLabel.bounds.size.height;
+    CGFloat cellHeight = 15 + label + 10 + 10;
+    return cellHeight;
+}
 
 @end

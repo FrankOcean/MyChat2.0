@@ -11,10 +11,15 @@
 
 #define KSCountPerLoad 20 //每次从数据库加载聊天记录数
 
+static NSString *receiverCellID = @"ReceiverCell";
+static NSString *senderCellID = @"SenderCell";
+
 @interface KSChatViewController ()<UITextViewDelegate,IEMChatProgressDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputToolBarBottomConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+/** cell的工具，用于计算cell的调度*/
+@property(nonatomic,strong)KSChatCell *chatCellTool;
 /** 聊天数据源*/
 @property(nonatomic,strong)NSMutableArray *messages;
 /** 当前会话管理者*/
@@ -40,6 +45,9 @@
     // 2.显示聊天标题
     self.title = self.buddy.username;
     
+    // 初始化cell的工具类
+    self.chatCellTool = [self.tableView dequeueReusableCellWithIdentifier:receiverCellID];
+    self.tableView.estimatedRowHeight = 90;
     // 3.加载聊天消息
     [self loadChatMessages];
 }
@@ -150,8 +158,6 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     EMMessage *message = self.messages[indexPath.row];
-    static NSString *receiverCellID = @"ReceiverCell";
-    static NSString *senderCellID = @"SenderCell";
     KSChatCell *cell = nil;
     //接收方
     if([message.from isEqualToString:self.buddy.username]){
@@ -168,6 +174,10 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    self.chatCellTool.message = self.messages[indexPath.row];
+    
+    return [self.chatCellTool cellHeight];
 }
+
+
 @end

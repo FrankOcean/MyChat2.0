@@ -13,4 +13,6 @@
 
 @property(nonatomic,strong)EMMessage *message;
 
+-(CGFloat)cellHeight;
+
 @end

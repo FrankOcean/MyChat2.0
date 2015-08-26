@@ -256,20 +256,27 @@
                                                         <constraint firstAttribute="width" constant="36" id="kZk-32-IuT"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rei-xY-CPf" userLabel="chatTextLabel">
-                                                    <rect key="frame" x="61" y="15" width="199" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="rei-xY-CPf" userLabel="chatTextLabel">
+                                                    <rect key="frame" x="61" y="15" width="42" height="21"/>
                                                     <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_receiver_bg" translatesAutoresizingMaskIntoConstraints="NO" id="mnz-YN-uyy" userLabel="bubbleBg">
+                                                    <rect key="frame" x="46" y="5" width="67" height="41"/>
+                                                    <rect key="contentStretch" x="0.5" y="0.69999999999999996" width="0.0" height="0.0"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Yu9-3n-a2I" firstAttribute="leading" secondItem="mYS-iw-Hjj" secondAttribute="leading" constant="5" id="0MQ-D8-Bwo"/>
                                                 <constraint firstItem="rei-xY-CPf" firstAttribute="leading" secondItem="Yu9-3n-a2I" secondAttribute="trailing" constant="20" id="6aj-pl-Yuj"/>
-                                                <constraint firstAttribute="trailing" secondItem="rei-xY-CPf" secondAttribute="trailing" constant="60" id="MbS-2R-YIL"/>
+                                                <constraint firstItem="rei-xY-CPf" firstAttribute="trailing" secondItem="mnz-YN-uyy" secondAttribute="trailing" constant="-10" id="K5k-OL-E8g"/>
                                                 <constraint firstItem="rei-xY-CPf" firstAttribute="top" secondItem="mYS-iw-Hjj" secondAttribute="top" constant="15" id="Z7G-jl-EWo"/>
+                                                <constraint firstItem="mnz-YN-uyy" firstAttribute="leading" secondItem="Yu9-3n-a2I" secondAttribute="trailing" constant="5" id="a6d-qA-9r6"/>
                                                 <constraint firstItem="Yu9-3n-a2I" firstAttribute="top" secondItem="mYS-iw-Hjj" secondAttribute="top" constant="5" id="g3Q-R1-clq"/>
+                                                <constraint firstItem="mnz-YN-uyy" firstAttribute="top" secondItem="mYS-iw-Hjj" secondAttribute="top" constant="5" id="mKi-Ec-aSS"/>
+                                                <constraint firstItem="rei-xY-CPf" firstAttribute="bottom" secondItem="mnz-YN-uyy" secondAttribute="bottom" constant="-10" id="zuS-v4-ovz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -290,8 +297,12 @@
                                                         <constraint firstAttribute="width" constant="36" id="a4p-pK-U8e"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-cm-sn3" userLabel="chatTextLabel">
-                                                    <rect key="frame" x="60" y="15" width="199" height="21"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_sender_bg" translatesAutoresizingMaskIntoConstraints="NO" id="vrc-st-82h" userLabel="bubbleBg">
+                                                    <rect key="frame" x="207" y="5" width="67" height="41"/>
+                                                    <rect key="contentStretch" x="0.5" y="0.69999999999999996" width="0.0" height="0.0"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-cm-sn3" userLabel="chatTextLabel">
+                                                    <rect key="frame" x="217" y="15" width="42" height="21"/>
                                                     <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -299,11 +310,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="EZL-KS-cc5" firstAttribute="leading" secondItem="vrc-st-82h" secondAttribute="trailing" constant="5" id="ESp-Gm-YP7"/>
                                                 <constraint firstItem="EZL-KS-cc5" firstAttribute="top" secondItem="t3y-kn-duX" secondAttribute="top" constant="5" id="EmF-Fq-ySP"/>
                                                 <constraint firstAttribute="trailing" secondItem="EZL-KS-cc5" secondAttribute="trailing" constant="5" id="EpU-Qx-dHQ"/>
                                                 <constraint firstItem="EZL-KS-cc5" firstAttribute="leading" secondItem="hAj-cm-sn3" secondAttribute="trailing" constant="20" id="Lee-1D-9P3"/>
                                                 <constraint firstItem="hAj-cm-sn3" firstAttribute="top" secondItem="t3y-kn-duX" secondAttribute="top" constant="15" id="cXB-YD-GUI"/>
-                                                <constraint firstItem="hAj-cm-sn3" firstAttribute="leading" secondItem="t3y-kn-duX" secondAttribute="leading" constant="60" id="h6A-wI-MoW"/>
+                                                <constraint firstItem="hAj-cm-sn3" firstAttribute="bottom" secondItem="vrc-st-82h" secondAttribute="bottom" constant="-10" id="qEE-Vo-bFC"/>
+                                                <constraint firstItem="hAj-cm-sn3" firstAttribute="leading" secondItem="vrc-st-82h" secondAttribute="leading" constant="10" id="teO-DC-c0T"/>
+                                                <constraint firstItem="vrc-st-82h" firstAttribute="top" secondItem="t3y-kn-duX" secondAttribute="top" constant="5" id="tsF-XH-LLn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -410,5 +424,7 @@
         <image name="chatBar_more" width="30" height="30"/>
         <image name="chatBar_recordSelected" width="30" height="30"/>
         <image name="chatListCellHead" width="51" height="51"/>
+        <image name="chat_receiver_bg" width="40" height="40"/>
+        <image name="chat_sender_bg" width="40" height="40"/>
     </resources>
 </document>

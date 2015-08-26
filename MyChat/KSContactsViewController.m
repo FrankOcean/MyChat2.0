@@ -116,4 +116,13 @@
     [self.tableView reloadData];
     
 }
+
+
+#pragma mark  - 表格代理
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // 手动进入聊天控制器
+//    [self performSegueWithIdentifier:@"ChatSegue" sender:nil];
+}
+
 @end

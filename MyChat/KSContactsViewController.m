@@ -127,6 +127,7 @@
         NSInteger row = [self.tableView indexPathForSelectedRow].row;
         KSChatViewController *chatVc = desVc;
         chatVc.buddy = self.friendsList[row];
+        chatVc.isGroup = NO;
     }
 }
 

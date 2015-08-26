@@ -9,6 +9,7 @@
 #ifndef MyChat_MyChat_pch
 #define MyChat_MyChat_pch
 #import "EaseMob.h"
+
 #import "EMAlertView.h"
 #import "KSChatManagerTool.h"
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B06E6C461B8D70CF0017EFF3 /* KSChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6C451B8D70CF0017EFF3 /* KSChatViewController.m */; };
 		B06E6C8E1B8D7EA60017EFF3 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6C8D1B8D7EA60017EFF3 /* THProgressView.m */; };
+		B06E6CB01B8DF5720017EFF3 /* KSChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6CAF1B8DF5720017EFF3 /* KSChatCell.m */; };
 		B08FB8A41B8AF6E80097FEEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B08FB8A31B8AF6E80097FEEA /* main.m */; };
 		B08FB8A71B8AF6E80097FEEA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B08FB8A61B8AF6E80097FEEA /* AppDelegate.m */; };
 		B08FB8AA1B8AF6E80097FEEA /* KSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B08FB8A91B8AF6E80097FEEA /* KSLoginViewController.m */; };
@@ -51,6 +52,8 @@
 		B06E6C451B8D70CF0017EFF3 /* KSChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatViewController.m; sourceTree = "<group>"; };
 		B06E6C8C1B8D7EA60017EFF3 /* THProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgressView.h; sourceTree = "<group>"; };
 		B06E6C8D1B8D7EA60017EFF3 /* THProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgressView.m; sourceTree = "<group>"; };
+		B06E6CAE1B8DF5720017EFF3 /* KSChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatCell.h; sourceTree = "<group>"; };
+		B06E6CAF1B8DF5720017EFF3 /* KSChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatCell.m; sourceTree = "<group>"; };
 		B08FB89E1B8AF6E80097FEEA /* MyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08FB8A21B8AF6E80097FEEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B08FB8A31B8AF6E80097FEEA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 		B06E6C431B8D70B80017EFF3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B06E6CAE1B8DF5720017EFF3 /* KSChatCell.h */,
+				B06E6CAF1B8DF5720017EFF3 /* KSChatCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -820,6 +825,7 @@
 				B097ECD71B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m in Sources */,
 				B097ECDB1B8C5EFD0087A63D /* EMAlertView.m in Sources */,
 				B08FB9531B8B080F0097FEEA /* MBProgressHUD+Add.m in Sources */,
+				B06E6CB01B8DF5720017EFF3 /* KSChatCell.m in Sources */,
 				B0EEDE7C1B8C1416002F1199 /* KSRecentViewController.m in Sources */,
 				B0C0042C1B8C6AC200A360DA /* KSContactsViewController.m in Sources */,
 			);

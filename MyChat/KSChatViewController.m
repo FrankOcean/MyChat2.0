@@ -8,7 +8,7 @@
 
 #import "KSChatViewController.h"
 
-@interface KSChatViewController ()
+@interface KSChatViewController ()<UITextViewDelegate,IEMChatProgressDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputToolBarBottomConstraint;
 
 @end
@@ -20,6 +20,9 @@
 
     // 1.监听键盘通知
     [self setupKeyboardNotification];
+    
+    // 2.显示聊天标题
+    self.title = self.buddy.username;
 }
 
 #pragma mark - 键盘
@@ -50,4 +53,43 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark - UITextView代理
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    KSLog(@"xx");
+}
+
+-(void)textViewDidChange:(UITextView *)textView{
+    if ([textView.text hasSuffix:@"\n"]) {//发送
+        [self sendMessage:textView];
+    }
+}
+
+-(void)sendMessage:(UITextView *)textView{
+    // 1.消息文本
+    EMChatText *text = [[EMChatText alloc] initWithText:textView.text];
+    
+    // 2.消息体
+    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithChatObject:text];
+    
+    // 3.发送的消息对象
+    EMMessage *message = [[EMMessage alloc] initWithReceiver:self.buddy.username
+                                                        bodies:@[body]];
+    // 不加密
+    message.requireEncryption = NO;
+    // 消息类型 《私聊》
+    message.messageType = eMessageTypeChat;
+    
+    [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:self prepare:^(EMMessage *message, EMError *error) {
+        KSLog(@"prepare %@",message.messageBodies);
+    } onQueue:nil completion:^(EMMessage *message, EMError *error) {
+        KSLog(@"完成 %@",message.messageBodies);
+    } onQueue:nil];
+    textView.text = nil;
+}
+
+- (void)setProgress:(float)progress
+         forMessage:(EMMessage *)message
+     forMessageBody:(id<IEMMessageBody>)messageBody{
+    KSLog(@"%lf",progress);
+}
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "KSContactsViewController.h"
+#import "KSChatViewController.h"
 
 @interface KSContactsViewController ()<EMChatManagerDelegate>
 /**
@@ -119,10 +120,14 @@
 
 
 #pragma mark  - 表格代理
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    // 手动进入聊天控制器
-//    [self performSegueWithIdentifier:@"ChatSegue" sender:nil];
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    // 1.目标控制器
+    id desVc = segue.destinationViewController;
+    if ([desVc isKindOfClass:[KSChatViewController class]]) {
+        NSInteger row = [self.tableView indexPathForSelectedRow].row;
+        KSChatViewController *chatVc = desVc;
+        chatVc.buddy = self.friendsList[row];
+    }
 }
 
 @end

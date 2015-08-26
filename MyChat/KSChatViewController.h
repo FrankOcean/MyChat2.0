@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EMBuddy.h"
 
 @interface KSChatViewController : UIViewController
 
+
+/*
+ * 好友模型
+ */
+@property(nonatomic,strong)EMBuddy *buddy;
+
+/*
+ * 是群聊还是私聊
+ */
+@property(nonatomic,assign)BOOL isGroup;
 @end

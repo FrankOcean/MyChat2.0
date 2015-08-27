@@ -8,6 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol KSChatInputToolBarDelegate <NSObject>
+/**
+ * 开始录音
+ */
+-(void)beginRecord;
+
+/**
+ * 取消录音
+ */
+-(void)cancelRecord;
+
+/**
+ * 结束录音
+ */
+-(void)endRecord;
+
+@end
+
 @interface KSChatInputToolBar : UIView
+
+@property(nonatomic,weak)IBOutlet id<KSChatInputToolBarDelegate> delegate;
 
 @end

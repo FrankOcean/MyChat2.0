@@ -249,12 +249,17 @@
                                             <outlet property="delegate" destination="Jpc-Jk-hdM" id="1sE-Ac-r0F"/>
                                         </connections>
                                     </textView>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lio-Ev-djv">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lio-Ev-djv">
                                         <rect key="frame" x="43" y="5" width="196" height="36"/>
                                         <state key="normal" title="按下开始录音" backgroundImage="chatBar_recordSelectedBg">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted" title="松开发送语音"/>
+                                        <connections>
+                                            <action selector="beginRecordAction:" destination="zhe-4K-14g" eventType="touchDown" id="R02-CX-TSu"/>
+                                            <action selector="cancelRecordAction:" destination="zhe-4K-14g" eventType="touchUpOutside" id="2OF-yz-24h"/>
+                                            <action selector="endRecordAction:" destination="zhe-4K-14g" eventType="touchUpInside" id="MnQ-Vz-yQf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -282,6 +287,7 @@
                                     <constraint firstItem="PNV-df-HPO" firstAttribute="leading" secondItem="Lio-Ev-djv" secondAttribute="trailing" constant="8" id="y5Y-9H-JDr"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="delegate" destination="Jpc-Jk-hdM" id="Mll-1K-E7j"/>
                                     <outlet property="recordBtn" destination="Lio-Ev-djv" id="FuV-tZ-bz5"/>
                                     <outlet property="textView" destination="fhX-l1-sGG" id="9ge-rU-6qv"/>
                                 </connections>

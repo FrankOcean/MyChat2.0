@@ -8,13 +8,14 @@
 
 #import "KSChatViewController.h"
 #import "KSChatCell.h"
+#import "KSChatInputToolBar.h"
 
 #define KSCountPerLoad 20 //每次从数据库加载聊天记录数
 
 static NSString *receiverCellID = @"ReceiverCell";
 static NSString *senderCellID = @"SenderCell";
 
-@interface KSChatViewController ()<UITextViewDelegate,IEMChatProgressDelegate,UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate>
+@interface KSChatViewController ()<UITextViewDelegate,IEMChatProgressDelegate,UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate,KSChatInputToolBarDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputToolBarBottomConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -219,5 +220,27 @@ static NSString *senderCellID = @"SenderCell";
     [self scrollToBottom];
 }
 
+#pragma mark - 聊天输入工具条代理
+/**
+ * 开始录音
+ */
+-(void)beginRecord{
+
+    KSLog(@"xx");
+}
+
+/**
+ * 取消录音
+ */
+-(void)cancelRecord{
+    KSLog(@"xx");
+}
+
+/**
+ * 结束录音
+ */
+-(void)endRecord{
+    KSLog(@"xx");
+}
 
 @end

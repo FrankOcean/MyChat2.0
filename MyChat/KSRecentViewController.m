@@ -8,6 +8,7 @@
 
 #import "KSRecentViewController.h"
 #import "EaseMob.h"
+#import "KSChatViewController.h"
 
 @interface KSRecentViewController ()<EMChatManagerDelegate>
 
@@ -159,6 +160,27 @@
 
 -(void)didUnreadMessagesCountChanged{
     [self setupUnreadCount];
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.destinationViewController isKindOfClass:[KSChatViewController class]]) {
+        NSUInteger row = [self.tableView indexPathForSelectedRow].row;
+        // 1.获取对应的会话管理者
+        EMConversation *cvst = self.dataSources[row];
+        
+        // 2.获取聊天控制器
+        KSChatViewController *chatVc = segue.destinationViewController;
+        
+        // 封装好友对象
+        EMBuddy *buddy = [EMBuddy buddyWithUsername:cvst.chatter];
+        
+        // 4.设置参数
+        chatVc.buddy = buddy;
+        chatVc.isGroup = NO;//私聊，不是群聊
+
+    }
+    
 }
 
 @end

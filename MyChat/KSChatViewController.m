@@ -71,7 +71,9 @@ static NSString *senderCellID = @"SenderCell";
             [self.messages addObjectsFromArray:msgFromDB];
         }
        
-       
+       // 4.设置当前会话所有消息都为已读
+        [self.conversation markAllMessagesAsRead:YES];
+
     }else{
         KSLog(@"获取会话管理者对象失败");
     }
@@ -216,7 +218,6 @@ static NSString *senderCellID = @"SenderCell";
     [self.tableView reloadData];
     [self scrollToBottom];
 }
-
 
 
 @end

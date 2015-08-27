@@ -53,6 +53,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Jpc-Jk-hdM" kind="show" id="098-mq-Nuj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -60,7 +63,7 @@
                             <outlet property="delegate" destination="Pnd-5v-T7o" id="Shl-By-rFX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="w8G-jq-OUF"/>
+                    <navigationItem key="navigationItem" title="Recent" id="w8G-jq-OUF"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfK-2E-3zw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -179,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EiE-FX-LHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-141" y="-594"/>
+            <point key="canvasLocation" x="-21" y="194"/>
         </scene>
         <!--聊天-->
         <scene sceneID="25Q-mL-NWt">
@@ -367,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jYT-of-99V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114" y="23"/>
+            <point key="canvasLocation" x="-21" y="-437"/>
         </scene>
         <!--Nav-通讯录-->
         <scene sceneID="HVv-6I-mTM">
@@ -441,4 +444,7 @@
         <image name="chat_receiver_bg" width="40" height="40"/>
         <image name="chat_sender_bg" width="40" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="098-mq-Nuj"/>
+    </inferredMetricsTieBreakers>
 </document>

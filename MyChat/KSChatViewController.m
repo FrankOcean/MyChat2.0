@@ -9,6 +9,8 @@
 #import "KSChatViewController.h"
 #import "KSChatCell.h"
 #import "KSChatInputToolBar.h"
+#import "EMCDDeviceManager.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define KSCountPerLoad 20 //每次从数据库加载聊天记录数
 
@@ -130,19 +132,16 @@ static NSString *senderCellID = @"SenderCell";
 #pragma mark - UITextView代理
 -(void)textViewDidChange:(UITextView *)textView{
     if ([textView.text hasSuffix:@"\n"]) {//发送
-        [self sendMessage:textView];
+        [self sendText:textView];
         // 清空文字
         textView.text = nil;
         [textView layoutIfNeeded];
     }
-    
-   
-//    [textView sizeToFit];
 }
 
 #pragma mark - 发聊天消息
 #pragma mark 发纯文本
--(void)sendMessage:(UITextView *)textView{
+-(void)sendText:(UITextView *)textView{
     // 1.消息文本
     EMChatText *text = [[EMChatText alloc] initWithText:[textView.text stringByReplacingOccurrencesOfString:@"\n" withString:@""]];
     
@@ -150,28 +149,39 @@ static NSString *senderCellID = @"SenderCell";
     EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithChatObject:text];
     
     // 3.发送的消息对象
-    EMMessage *message = [[EMMessage alloc] initWithReceiver:self.buddy.username
-                                                        bodies:@[body]];
+    [self sendMessageWithBody:body];
+}
+
+
+#pragma mark 发送语音
+-(void)sendVoice:(NSString *)filePath{
+    // 语音对象
+    EMChatVoice *voice = [[EMChatVoice alloc] initWithFile:filePath displayName:@"audio"];
+    
+    // 消息体
+    EMVoiceMessageBody *voiceMsgBody = [[EMVoiceMessageBody alloc] initWithChatObject:voice];
+        
+    [self sendMessageWithBody:voiceMsgBody];
+
+}
+
+-(void)sendMessageWithBody:(id<IEMMessageBody>)body{
+    EMMessage *message = [[EMMessage alloc] initWithReceiver:self.buddy.username bodies:@[body]];
+    message.messageType = eMessageTypeChat;// 私聊
     // 不加密
     message.requireEncryption = NO;
-    // 消息类型 《私聊》
-    message.messageType = eMessageTypeChat;
-    
-    // 刷新表情
+    // 1.刷新消息
     [self.messages addObject:message];
     [self.tableView reloadData];
     [self scrollToBottom];
     
-    [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:self];
-    
-    [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:self prepare:^(EMMessage *message, EMError *error) {
-        KSLog(@"prepare %@",message.messageBodies);
-    } onQueue:nil completion:^(EMMessage *message, EMError *error) {
-        KSLog(@"完成 %@",message.messageBodies);
+    // 2.发送消息
+    [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil prepare:nil onQueue:nil completion:^(EMMessage *message, EMError *error) {
+        if (!error) {
+            KSLog(@"语音发送成功");
+        }
     } onQueue:nil];
-    
 }
-
 
 #pragma mark - 表格数据源
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -226,21 +236,51 @@ static NSString *senderCellID = @"SenderCell";
  */
 -(void)beginRecord{
 
-    KSLog(@"xx");
+//    if ([self canRecord] == NO) {
+//        KSLog(@"当前系统不支持录音");
+//        return;
+//    }
+    KSLog(@"开始录音....");
+    
+    int x = arc4random() % 100000;
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    NSString *fileName = [NSString stringWithFormat:@"%d%d",(int)time,x];
+    
+    // 开始录音
+    [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:fileName  completion:^(NSError *error){
+         if (error) {
+             KSLog( @"failure to start recording");
+         }
+     }];
 }
 
 /**
  * 取消录音
  */
 -(void)cancelRecord{
-    KSLog(@"xx");
+    KSLog(@"取消录音");
+    [[EMCDDeviceManager sharedInstance] cancelCurrentRecording];
 }
 
 /**
  * 结束录音
  */
 -(void)endRecord{
-    KSLog(@"xx");
+    KSLog(@"结束录音，准备发送");
+    [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
+            KSLog(@"%@ %@",recordPath,error);
+        if (!error) {
+            EMChatVoice *voice = [[EMChatVoice alloc] initWithFile:recordPath displayName:@"audio"];
+            voice.duration = aDuration;
+            // 消息体
+            EMVoiceMessageBody *voiceBody = [[EMVoiceMessageBody alloc] initWithChatObject:voice];
+
+            [self sendMessageWithBody:voiceBody];
+        }
+    }];
+
 }
+
+
 
 @end

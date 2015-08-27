@@ -196,9 +196,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhe-4K-14g" userLabel="ChatInputToolBar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhe-4K-14g" userLabel="ChatInputToolBar" customClass="KSChatInputToolBar">
                                 <rect key="frame" x="0.0" y="434" width="320" height="46"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messageToolbarBg" translatesAutoresizingMaskIntoConstraints="NO" id="u8o-4p-cmn" userLabel="toolBarBg">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suO-Nz-yyL" userLabel="Voice">
                                         <rect key="frame" x="5" y="11" width="30" height="30"/>
                                         <constraints>
@@ -208,6 +211,9 @@
                                         <state key="normal" image="chatBar_recordSelected">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="voiceAction:" destination="zhe-4K-14g" eventType="touchUpInside" id="fDT-64-7K8"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yr-Ch-DDE" userLabel="Emotion">
                                         <rect key="frame" x="285" y="11" width="30" height="30"/>
@@ -229,9 +235,11 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatBar_textBg" translatesAutoresizingMaskIntoConstraints="NO" id="4CG-fq-GDM" userLabel="textViewBg">
+                                        <rect key="frame" x="43" y="5" width="196" height="36"/>
+                                    </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhX-l1-sGG">
                                         <rect key="frame" x="43" y="5" width="196" height="36"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="tTz-Te-7BX"/>
                                         </constraints>
@@ -241,20 +249,42 @@
                                             <outlet property="delegate" destination="Jpc-Jk-hdM" id="1sE-Ac-r0F"/>
                                         </connections>
                                     </textView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lio-Ev-djv">
+                                        <rect key="frame" x="43" y="5" width="196" height="36"/>
+                                        <state key="normal" title="按下开始录音" backgroundImage="chatBar_recordSelectedBg">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" title="松开发送语音"/>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Lio-Ev-djv" firstAttribute="top" secondItem="zhe-4K-14g" secondAttribute="top" constant="5" id="5ou-D4-VcB"/>
                                     <constraint firstAttribute="trailing" secondItem="8yr-Ch-DDE" secondAttribute="trailing" constant="5" id="8bz-gt-aD6"/>
                                     <constraint firstAttribute="bottom" secondItem="fhX-l1-sGG" secondAttribute="bottom" constant="5" id="8vb-5B-gpL"/>
+                                    <constraint firstItem="u8o-4p-cmn" firstAttribute="top" secondItem="zhe-4K-14g" secondAttribute="top" id="9YP-sv-SE5"/>
+                                    <constraint firstAttribute="bottom" secondItem="u8o-4p-cmn" secondAttribute="bottom" id="AA7-7b-FVE"/>
                                     <constraint firstAttribute="bottom" secondItem="8yr-Ch-DDE" secondAttribute="bottom" constant="5" id="EOt-dp-Yha"/>
                                     <constraint firstItem="fhX-l1-sGG" firstAttribute="leading" secondItem="suO-Nz-yyL" secondAttribute="trailing" constant="8" id="LCq-pw-EMl"/>
                                     <constraint firstAttribute="height" constant="46" id="OmC-Wl-zNo"/>
                                     <constraint firstAttribute="bottom" secondItem="PNV-df-HPO" secondAttribute="bottom" constant="5" id="SSf-2G-Kge"/>
+                                    <constraint firstAttribute="trailing" secondItem="u8o-4p-cmn" secondAttribute="trailing" id="UpP-aO-aWW"/>
                                     <constraint firstItem="8yr-Ch-DDE" firstAttribute="leading" secondItem="PNV-df-HPO" secondAttribute="trailing" constant="8" id="Vot-2O-B3A"/>
                                     <constraint firstItem="PNV-df-HPO" firstAttribute="leading" secondItem="fhX-l1-sGG" secondAttribute="trailing" constant="8" id="ZWh-M7-xbZ"/>
                                     <constraint firstItem="suO-Nz-yyL" firstAttribute="leading" secondItem="zhe-4K-14g" secondAttribute="leading" constant="5" id="aSh-Eq-NLr"/>
+                                    <constraint firstItem="Lio-Ev-djv" firstAttribute="leading" secondItem="suO-Nz-yyL" secondAttribute="trailing" constant="8" id="bNJ-sv-PnI"/>
+                                    <constraint firstAttribute="bottom" secondItem="4CG-fq-GDM" secondAttribute="bottom" constant="5" id="cDZ-Fz-dLv"/>
+                                    <constraint firstItem="4CG-fq-GDM" firstAttribute="leading" secondItem="suO-Nz-yyL" secondAttribute="trailing" constant="8" id="ckf-ge-A4f"/>
+                                    <constraint firstItem="4CG-fq-GDM" firstAttribute="top" secondItem="zhe-4K-14g" secondAttribute="top" constant="5" id="cqk-DW-yGw"/>
+                                    <constraint firstItem="PNV-df-HPO" firstAttribute="leading" secondItem="4CG-fq-GDM" secondAttribute="trailing" constant="8" id="fCI-Up-pHr"/>
+                                    <constraint firstAttribute="bottom" secondItem="Lio-Ev-djv" secondAttribute="bottom" constant="5" id="iqs-TE-aJh"/>
                                     <constraint firstAttribute="bottom" secondItem="suO-Nz-yyL" secondAttribute="bottom" constant="5" id="mDg-Ur-aIa"/>
+                                    <constraint firstItem="u8o-4p-cmn" firstAttribute="leading" secondItem="zhe-4K-14g" secondAttribute="leading" id="u2t-gK-ScJ"/>
+                                    <constraint firstItem="PNV-df-HPO" firstAttribute="leading" secondItem="Lio-Ev-djv" secondAttribute="trailing" constant="8" id="y5Y-9H-JDr"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="recordBtn" destination="Lio-Ev-djv" id="FuV-tZ-bz5"/>
+                                    <outlet property="textView" destination="fhX-l1-sGG" id="9ge-rU-6qv"/>
+                                </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="01O-gu-tih">
                                 <rect key="frame" x="0.0" y="64" width="320" height="370"/>
@@ -440,9 +470,12 @@
         <image name="chatBar_face" width="30" height="30"/>
         <image name="chatBar_more" width="30" height="30"/>
         <image name="chatBar_recordSelected" width="30" height="30"/>
+        <image name="chatBar_recordSelectedBg" width="5" height="7"/>
+        <image name="chatBar_textBg" width="7" height="9"/>
         <image name="chatListCellHead" width="51" height="51"/>
         <image name="chat_receiver_bg" width="40" height="40"/>
         <image name="chat_sender_bg" width="40" height="40"/>
+        <image name="messageToolbarBg" width="1" height="1"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="098-mq-Nuj"/>

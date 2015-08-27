@@ -32,6 +32,7 @@
 		B08FB9561B8B09820097FEEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B08FB9551B8B09820097FEEA /* Main.storyboard */; };
 		B097ECD71B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097ECD61B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m */; };
 		B097ECDB1B8C5EFD0087A63D /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B097ECDA1B8C5EFD0087A63D /* EMAlertView.m */; };
+		B0BD4E9A1B8F200C0015C4A9 /* KSChatInputToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BD4E991B8F200C0015C4A9 /* KSChatInputToolBar.m */; };
 		B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C004281B8C60E900A360DA /* KSChatManagerTool.m */; };
 		B0C0042C1B8C6AC200A360DA /* KSContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C0042B1B8C6AC200A360DA /* KSContactsViewController.m */; };
 		B0EEDE7C1B8C1416002F1199 /* KSRecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EEDE7B1B8C1416002F1199 /* KSRecentViewController.m */; };
@@ -168,6 +169,8 @@
 		B097ECD61B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAddFriendOrGroupViewController.m; sourceTree = "<group>"; };
 		B097ECD91B8C5EFD0087A63D /* EMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAlertView.h; sourceTree = "<group>"; };
 		B097ECDA1B8C5EFD0087A63D /* EMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAlertView.m; sourceTree = "<group>"; };
+		B0BD4E981B8F200C0015C4A9 /* KSChatInputToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatInputToolBar.h; sourceTree = "<group>"; };
+		B0BD4E991B8F200C0015C4A9 /* KSChatInputToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatInputToolBar.m; sourceTree = "<group>"; };
 		B0C004271B8C60E900A360DA /* KSChatManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatManagerTool.h; sourceTree = "<group>"; };
 		B0C004281B8C60E900A360DA /* KSChatManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatManagerTool.m; sourceTree = "<group>"; };
 		B0C0042A1B8C6AC200A360DA /* KSContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSContactsViewController.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 			children = (
 				B06E6CAE1B8DF5720017EFF3 /* KSChatCell.h */,
 				B06E6CAF1B8DF5720017EFF3 /* KSChatCell.m */,
+				B0BD4E981B8F200C0015C4A9 /* KSChatInputToolBar.h */,
+				B0BD4E991B8F200C0015C4A9 /* KSChatInputToolBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -822,6 +827,7 @@
 				B08FB8A41B8AF6E80097FEEA /* main.m in Sources */,
 				B06E6C8E1B8D7EA60017EFF3 /* THProgressView.m in Sources */,
 				B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */,
+				B0BD4E9A1B8F200C0015C4A9 /* KSChatInputToolBar.m in Sources */,
 				B097ECD71B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m in Sources */,
 				B097ECDB1B8C5EFD0087A63D /* EMAlertView.m in Sources */,
 				B08FB9531B8B080F0097FEEA /* MBProgressHUD+Add.m in Sources */,

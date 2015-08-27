@@ -171,4 +171,12 @@ static KSChatManagerTool *instance;
     
 }
 
+#pragma mark 未读消息数
+-(void)didUnreadMessagesCountChanged{
+    for (id delegate in self.delegates) {
+        if ([delegate respondsToSelector:@selector(didUnreadMessagesCountChanged)]) {
+            [delegate didUnreadMessagesCountChanged];
+        }
+    }
+}
 @end

@@ -128,7 +128,13 @@ static NSString *senderCellID = @"SenderCell";
 -(void)textViewDidChange:(UITextView *)textView{
     if ([textView.text hasSuffix:@"\n"]) {//发送
         [self sendMessage:textView];
+        // 清空文字
+        textView.text = nil;
+        [textView layoutIfNeeded];
     }
+    
+   
+//    [textView sizeToFit];
 }
 
 #pragma mark - 发聊天消息
@@ -160,7 +166,7 @@ static NSString *senderCellID = @"SenderCell";
     } onQueue:nil completion:^(EMMessage *message, EMError *error) {
         KSLog(@"完成 %@",message.messageBodies);
     } onQueue:nil];
-    textView.text = nil;
+    
 }
 
 
@@ -196,14 +202,21 @@ static NSString *senderCellID = @"SenderCell";
 #pragma mark - chatManager代理
 - (void)didReceiveMessage:(EMMessage *)message{
     // 如果是当前聊天的用户，才要刷新
-    NSString *loginUser = [[EaseMob sharedInstance].chatManager loginInfo][@"username"];
-    KSLog(@"from: %@ to: %@",self.buddy.username,loginUser);
-    if (![message.from isEqualToString:self.buddy.username] && ![message.to isEqualToString:loginUser]) {
+//    NSString *loginUser = [[EaseMob sharedInstance].chatManager loginInfo][@"username"];
+//    KSLog(@"from: %@ to: %@",self.buddy.username,loginUser);
+//    if (![message.from isEqualToString:self.buddy.username] && ![message.to isEqualToString:loginUser]) {
+//        return;
+//    }
+    
+    if (![message.conversationChatter isEqualToString:self.conversation.chatter]) {
         return;
     }
+    
     [self.messages addObject:message];
     [self.tableView reloadData];
     [self scrollToBottom];
 }
+
+
 
 @end

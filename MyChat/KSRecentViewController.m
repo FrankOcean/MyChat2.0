@@ -11,35 +11,107 @@
 
 @interface KSRecentViewController ()<EMChatManagerDelegate>
 
+/**数据源*/
+@property(nonatomic,strong)NSMutableArray *dataSources;
 @end
 
 @implementation KSRecentViewController
+
+-(NSMutableArray *)dataSources{
+    if (!_dataSources) {
+        _dataSources = [NSMutableArray array];
+    }
+    
+    return _dataSources;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"xxx";
     //1.设置 "聊天管理器" 代理
-//    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:dispatch_get_main_queue()];
-
     [[KSChatManagerTool sharedTool] addDelegate:self];
-    if ([[EaseMob sharedInstance].chatManager isAutoLoginEnabled]) {
-        if([[EaseMob sharedInstance].chatManager isLoggedIn]){
-        
-        }
+    
+    
+    if(![[EaseMob sharedInstance].chatManager isLoggedIn]){
         self.title = @"②登录中...";
+    }else{
+    
     }
+    
+   
+   //2.设置未读取消息数
+    [self setupUnreadCount];
+    
+    
 }
 
-
+-(void)setupUnreadCount{
+    [self.dataSources removeAllObjects];
+    
+   // 1.获取所有历史会话
+   NSArray *conversations = [[EaseMob sharedInstance].chatManager conversations];
+    
+    // 2.如果内存中，没有会话，从数据库中加载
+    if (conversations.count == 0) {
+        conversations = [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:YES];
+    }
+    KSLog(@"%@",conversations);
+    // 3.计算总未读取消息数
+    NSUInteger totalUnreadCount = 0;
+    for (EMConversation *cvst in conversations) {
+        NSUInteger unreadCount = [cvst unreadMessagesCount];
+        totalUnreadCount += unreadCount;
+        KSLog(@"%@ %zd",cvst.chatter,unreadCount);
+        [self.dataSources addObject:cvst];
+    }
+    
+    // 4.刷新表格
+    [self.tableView reloadData];
+    
+    // 5.设置badge
+    NSString *badge = nil;
+    if (totalUnreadCount > 0) {
+        badge = [NSString stringWithFormat:@"%zd",totalUnreadCount];
+    }
+    self.navigationController.tabBarItem.badgeValue = badge;
+    
+}
 -(void)dealloc{
     [[KSChatManagerTool sharedTool] removeDelegate:self];
 }
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.dataSources.count;
 }
 
-#pragma mark 自动登录代理
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    EMConversation *cvst = self.dataSources[indexPath.row];
+    
+    static NSString *ID = @"ConversationCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    // 1.显示历史会话用户名称
+    cell.textLabel.text = [NSString stringWithFormat:@"%@: %zd",cvst.chatter,cvst.unreadMessagesCount];
+    
+    // 2.最后一条消息
+    NSArray *msgBodies = cvst.latestMessage.messageBodies;
+    if (msgBodies.count > 0) {
+        id<IEMMessageBody> msgBody = msgBodies[0];
+        if ([msgBody isKindOfClass:[EMTextMessageBody class]]) {
+            EMTextMessageBody *textMsgBody = msgBody;
+            cell.detailTextLabel.text = textMsgBody.text;
+        }else{
+            cell.detailTextLabel.text = @"语音或者图片";
+        }
+    }
+    
+    
+    
+    
+    return cell;
+    
+}
+#pragma mark - 自动登录代理
 #pragma mark 将自动登录
 -(void)willAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error{
     self.title = @"②自动登录中....";
@@ -56,6 +128,7 @@
     }
     
     KSLog(@"%@",self.title);
+//    [self setupUnreadCount];
 }
 
 -(void)willAutoReconnect{
@@ -82,6 +155,10 @@
         self.title = @"①断开连接...";
         KSLog(@"①断开连接...");
     }
+}
+
+-(void)didUnreadMessagesCountChanged{
+    [self setupUnreadCount];
 }
 
 @end

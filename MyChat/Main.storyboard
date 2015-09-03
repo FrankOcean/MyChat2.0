@@ -302,12 +302,16 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ii5-wo-KbJ" id="mYS-iw-Hjj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatListCellHead" translatesAutoresizingMaskIntoConstraints="NO" id="Yu9-3n-a2I">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatListCellHead" translatesAutoresizingMaskIntoConstraints="NO" id="Yu9-3n-a2I">
                                                     <rect key="frame" x="5" y="5" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="RGs-S7-MMc"/>
                                                         <constraint firstAttribute="width" constant="36" id="kZk-32-IuT"/>
                                                     </constraints>
+                                                </imageView>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_receiver_bg" translatesAutoresizingMaskIntoConstraints="NO" id="mnz-YN-uyy" userLabel="bubbleBg">
+                                                    <rect key="frame" x="46" y="5" width="67" height="41"/>
+                                                    <rect key="contentStretch" x="0.5" y="0.69999999999999996" width="0.0" height="0.0"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="rei-xY-CPf" userLabel="chatTextLabel">
                                                     <rect key="frame" x="61" y="15" width="42" height="21"/>
@@ -316,10 +320,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_receiver_bg" translatesAutoresizingMaskIntoConstraints="NO" id="mnz-YN-uyy" userLabel="bubbleBg">
-                                                    <rect key="frame" x="46" y="5" width="67" height="41"/>
-                                                    <rect key="contentStretch" x="0.5" y="0.69999999999999996" width="0.0" height="0.0"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Yu9-3n-a2I" firstAttribute="leading" secondItem="mYS-iw-Hjj" secondAttribute="leading" constant="5" id="0MQ-D8-Bwo"/>

@@ -13,10 +13,6 @@
 #import <AVFoundation/AVFoundation.h>
 
 #define KSCountPerLoad 20 //每次从数据库加载聊天记录数
-
-static NSString *receiverCellID = @"ReceiverCell";
-static NSString *senderCellID = @"SenderCell";
-
 @interface KSChatViewController ()<UITextViewDelegate,IEMChatProgressDelegate,UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate,KSChatInputToolBarDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputToolBarBottomConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -42,6 +38,12 @@ static NSString *senderCellID = @"SenderCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // 设置背景
+    self.view.backgroundColor = [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1];
+    
+    // 去创建线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     // 1.监听键盘通知
     [self setupKeyboardNotification];
     

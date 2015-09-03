@@ -32,6 +32,7 @@
 		B08FB9561B8B09820097FEEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B08FB9551B8B09820097FEEA /* Main.storyboard */; };
 		B097ECD71B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097ECD61B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m */; };
 		B097ECDB1B8C5EFD0087A63D /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B097ECDA1B8C5EFD0087A63D /* EMAlertView.m */; };
+		B0AF1FA71B98016500E768BD /* KSVoiceAnimationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AF1FA61B98016500E768BD /* KSVoiceAnimationTool.m */; };
 		B0BD4E9A1B8F200C0015C4A9 /* KSChatInputToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BD4E991B8F200C0015C4A9 /* KSChatInputToolBar.m */; };
 		B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C004281B8C60E900A360DA /* KSChatManagerTool.m */; };
 		B0C0042C1B8C6AC200A360DA /* KSContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C0042B1B8C6AC200A360DA /* KSContactsViewController.m */; };
@@ -181,6 +182,8 @@
 		B097ECD61B8C5ABD0087A63D /* KSAddFriendOrGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAddFriendOrGroupViewController.m; sourceTree = "<group>"; };
 		B097ECD91B8C5EFD0087A63D /* EMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAlertView.h; sourceTree = "<group>"; };
 		B097ECDA1B8C5EFD0087A63D /* EMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAlertView.m; sourceTree = "<group>"; };
+		B0AF1FA51B98016500E768BD /* KSVoiceAnimationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVoiceAnimationTool.h; sourceTree = "<group>"; };
+		B0AF1FA61B98016500E768BD /* KSVoiceAnimationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSVoiceAnimationTool.m; sourceTree = "<group>"; };
 		B0BD4E981B8F200C0015C4A9 /* KSChatInputToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatInputToolBar.h; sourceTree = "<group>"; };
 		B0BD4E991B8F200C0015C4A9 /* KSChatInputToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatInputToolBar.m; sourceTree = "<group>"; };
 		B0C004271B8C60E900A360DA /* KSChatManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatManagerTool.h; sourceTree = "<group>"; };
@@ -261,6 +264,7 @@
 		B06E6C411B8D708F0017EFF3 /* Chat【聊天】 */ = {
 			isa = PBXGroup;
 			children = (
+				B0AF1FA41B98014700E768BD /* Tool */,
 				B06E6C431B8D70B80017EFF3 /* View */,
 				B06E6C421B8D70AD0017EFF3 /* Controller */,
 			);
@@ -722,6 +726,15 @@
 			path = EMAlertView;
 			sourceTree = "<group>";
 		};
+		B0AF1FA41B98014700E768BD /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				B0AF1FA51B98016500E768BD /* KSVoiceAnimationTool.h */,
+				B0AF1FA61B98016500E768BD /* KSVoiceAnimationTool.m */,
+			);
+			name = Tool;
+			sourceTree = "<group>";
+		};
 		B0C004261B8C60BD00A360DA /* KSChatManagerTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -954,6 +967,7 @@
 				B08FB8AA1B8AF6E80097FEEA /* KSLoginViewController.m in Sources */,
 				B0E8B7D11B8F353D0029E5D5 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				B0E8B7E51B8F36080029E5D5 /* wav.mm in Sources */,
+				B0AF1FA71B98016500E768BD /* KSVoiceAnimationTool.m in Sources */,
 				B08FB8A71B8AF6E80097FEEA /* AppDelegate.m in Sources */,
 				B08FB9541B8B080F0097FEEA /* MBProgressHUD.m in Sources */,
 				B06E6C461B8D70CF0017EFF3 /* KSChatViewController.m in Sources */,

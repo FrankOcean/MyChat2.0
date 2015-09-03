@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "EMMessage.h"
 
+static NSString *receiverCellID = @"ReceiverCell";
+static NSString *senderCellID = @"SenderCell";
+
 @interface KSChatCell : UITableViewCell
 
 @property(nonatomic,strong)EMMessage *message;

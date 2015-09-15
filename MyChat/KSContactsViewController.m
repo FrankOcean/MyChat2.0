@@ -8,6 +8,7 @@
 
 #import "KSContactsViewController.h"
 #import "KSChatViewController.h"
+#import "KSChatViewController2.h"
 
 @interface KSContactsViewController ()<EMChatManagerDelegate>
 /**
@@ -129,6 +130,14 @@
         chatVc.buddy = self.friendsList[row];
         chatVc.isGroup = NO;
     }
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    KSChatViewController2 *chatVc = [sb instantiateViewControllerWithIdentifier:@"KSChatViewController2"];
+    chatVc.buddy = self.friendsList[indexPath.row];
+    [self.navigationController pushViewController:chatVc animated:YES];
 }
 
 @end

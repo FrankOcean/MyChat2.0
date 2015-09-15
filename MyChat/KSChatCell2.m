@@ -30,7 +30,21 @@
 //    [self sizeToFit];
 //    return self.bounds.size.height + 10;
 
+  
     
+}
+
+-(void)setMessage:(EMMessage *)message{
+    _message = message;
+    
+    // 消息体
+    id body = message.messageBodies[0];
+    if ([body isKindOfClass:[EMTextMessageBody class]]) {
+        EMTextMessageBody *textBody = body;
+        self.msgLabel.text = [textBody text];
+    }else{
+        self.msgLabel.text = @"未知消息类型";
+    }
 }
 
 @end

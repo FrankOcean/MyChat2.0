@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface KSChatCell2 : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 
+@property (strong, nonatomic) EMMessage *message;
 //cell的高度
 -(CGFloat)cellHeight;
 

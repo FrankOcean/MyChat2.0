@@ -64,12 +64,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recent" id="w8G-jq-OUF">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="Bsu-Mn-vcV">
+                        <barButtonItem key="rightBarButtonItem" title="chat2" id="Bsu-Mn-vcV">
                             <connections>
-                                <segue destination="qt1-G9-MZC" kind="show" id="70c-cv-RWR"/>
+                                <action selector="testChat2Action:" destination="Pnd-5v-T7o" id="TRe-36-exI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="qt1-G9-MZC" kind="show" identifier="toChat2Page" id="rA4-Or-efF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfK-2E-3zw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -107,9 +110,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4C-Bm-Zzu" id="CzB-ea-cRh">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Jpc-Jk-hdM" kind="push" id="KB0-qY-zUE"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -193,7 +193,7 @@
         <!--测试-->
         <scene sceneID="58l-Je-f2e">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="qt1-G9-MZC" customClass="KSChatViewController2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KSChatViewController2" hidesBottomBarWhenPushed="YES" id="qt1-G9-MZC" customClass="KSChatViewController2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yZd-e4-pN3"/>
                         <viewControllerLayoutGuide type="bottom" id="54v-Iv-2Jq"/>
@@ -242,7 +242,10 @@
                                         <rect key="frame" x="46" y="8" width="190" height="33"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qt1-G9-MZC" id="XNF-sd-8WX"/>
+                                        </connections>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -678,7 +681,4 @@
         <image name="chat_sender_bg" width="40" height="40"/>
         <image name="messageToolbarBg" width="1" height="1"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="098-mq-Nuj"/>
-    </inferredMetricsTieBreakers>
 </document>

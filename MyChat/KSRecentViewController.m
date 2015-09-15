@@ -9,6 +9,7 @@
 #import "KSRecentViewController.h"
 #import "EaseMob.h"
 #import "KSChatViewController.h"
+#import "KSChatViewController2.h"
 
 @interface KSRecentViewController ()<EMChatManagerDelegate>
 
@@ -164,7 +165,9 @@
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.destinationViewController isKindOfClass:[KSChatViewController class]]) {
+    // 目标控制器
+    id destVc = segue.destinationViewController;
+    if ([destVc isKindOfClass:[KSChatViewController class]]) {
         NSUInteger row = [self.tableView indexPathForSelectedRow].row;
         // 1.获取对应的会话管理者
         EMConversation *cvst = self.dataSources[row];
@@ -179,8 +182,22 @@
         chatVc.buddy = buddy;
         chatVc.isGroup = NO;//私聊，不是群聊
 
+    }else if([destVc isKindOfClass:[KSChatViewController2 class]]){
+        KSChatViewController2 *chat2Vc = destVc;
+        
+        // 获取一个好友模型，传递到下一个控制器
+        if (self.dataSources.count > 0) {
+            // 会话
+            EMConversation *cvst = [self.dataSources lastObject];
+            EMBuddy *buddy = [EMBuddy buddyWithUsername:cvst.chatter];
+            chat2Vc.buddy = buddy;
+        }
     }
     
+}
+- (IBAction)testChat2Action:(id)sender {
+    
+//    [self performSegueWithIdentifier:@"toChat2Page" sender:nil];
 }
 
 @end

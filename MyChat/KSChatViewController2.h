@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface KSChatViewController2 : UIViewController
 
+/*好友模型*/
+@property(nonatomic,strong)EMBuddy *buddy;
 @end

@@ -49,6 +49,8 @@
 		B0E8B7E71B8F36080029E5D5 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E8B7DF1B8F36080029E5D5 /* libopencore-amrnb.a */; };
 		B0E8B7E81B8F36080029E5D5 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E8B7E31B8F36080029E5D5 /* libopencore-amrwb.a */; };
 		B0EEDE7C1B8C1416002F1199 /* KSRecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EEDE7B1B8C1416002F1199 /* KSRecentViewController.m */; };
+		B0F184651BA7C0FC00712C92 /* KSChatViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F184641BA7C0FC00712C92 /* KSChatViewController2.m */; };
+		B0F184691BA7EFB500712C92 /* KSChatCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F184681BA7EFB500712C92 /* KSChatCell2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +225,10 @@
 		B0EEDE751B8C12BE002F1199 /* MyChat.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyChat.pch; sourceTree = "<group>"; };
 		B0EEDE7A1B8C1416002F1199 /* KSRecentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSRecentViewController.h; sourceTree = "<group>"; };
 		B0EEDE7B1B8C1416002F1199 /* KSRecentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSRecentViewController.m; sourceTree = "<group>"; };
+		B0F184631BA7C0FC00712C92 /* KSChatViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatViewController2.h; sourceTree = "<group>"; };
+		B0F184641BA7C0FC00712C92 /* KSChatViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatViewController2.m; sourceTree = "<group>"; };
+		B0F184671BA7EFB500712C92 /* KSChatCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatCell2.h; sourceTree = "<group>"; };
+		B0F184681BA7EFB500712C92 /* KSChatCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatCell2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +270,7 @@
 		B06E6C411B8D708F0017EFF3 /* Chat【聊天】 */ = {
 			isa = PBXGroup;
 			children = (
+				B0F184661BA7C10A00712C92 /* Test */,
 				B0AF1FA41B98014700E768BD /* Tool */,
 				B06E6C431B8D70B80017EFF3 /* View */,
 				B06E6C421B8D70AD0017EFF3 /* Controller */,
@@ -861,6 +868,17 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		B0F184661BA7C10A00712C92 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				B0F184631BA7C0FC00712C92 /* KSChatViewController2.h */,
+				B0F184641BA7C0FC00712C92 /* KSChatViewController2.m */,
+				B0F184671BA7EFB500712C92 /* KSChatCell2.h */,
+				B0F184681BA7EFB500712C92 /* KSChatCell2.m */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -967,6 +985,7 @@
 				B08FB8AA1B8AF6E80097FEEA /* KSLoginViewController.m in Sources */,
 				B0E8B7D11B8F353D0029E5D5 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				B0E8B7E51B8F36080029E5D5 /* wav.mm in Sources */,
+				B0F184691BA7EFB500712C92 /* KSChatCell2.m in Sources */,
 				B0AF1FA71B98016500E768BD /* KSVoiceAnimationTool.m in Sources */,
 				B08FB8A71B8AF6E80097FEEA /* AppDelegate.m in Sources */,
 				B08FB9541B8B080F0097FEEA /* MBProgressHUD.m in Sources */,
@@ -976,6 +995,7 @@
 				B0E8B7D21B8F353D0029E5D5 /* EMCDDeviceManager+Remind.m in Sources */,
 				B0E8B7D01B8F353D0029E5D5 /* EMCDDeviceManager+Microphone.m in Sources */,
 				B06E6C8E1B8D7EA60017EFF3 /* THProgressView.m in Sources */,
+				B0F184651BA7C0FC00712C92 /* KSChatViewController2.m in Sources */,
 				B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */,
 				B0BD4E9A1B8F200C0015C4A9 /* KSChatInputToolBar.m in Sources */,
 				B0E8B7CE1B8F353D0029E5D5 /* EMAudioRecorderUtil.m in Sources */,

@@ -33,6 +33,7 @@
     }
     id<IChatManager> cm = [EaseMob sharedInstance].chatManager;
 
+//    [[EaseMob sharedInstance].chatManager addBuddy:<#(NSString *)#> message:<#(NSString *)#> error:<#(EMError *__autoreleasing *)#>]
     NSString *msg = [NSString stringWithFormat:@"我是%@",[cm loginInfo][@"username"]];
     if([cm addBuddy:self.friendName.text message:msg error:nil]){
         

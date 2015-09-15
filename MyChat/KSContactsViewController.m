@@ -47,13 +47,13 @@
 }
 
 -(void)didRemovedByBuddy:(NSString *)username{
-    
+    NSLog(@"%@移除了你",username);
 }
 
 
 -(void)getFriendsListFromServer{
     __weak typeof(self) weakSelf = self;
-    
+//    [[EaseMob sharedInstance].chatManager buddyList];
     [[EaseMob sharedInstance].chatManager asyncFetchBuddyListWithCompletion:^(NSArray *buddyList, EMError *error) {
         if (error) {
             KSLog(@"%@",error);

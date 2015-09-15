@@ -60,6 +60,7 @@
         [MBProgressHUD hideHUDForView:nil animated:NO];
         
         if (error) {
+#warning 注册失败显示自定义的错误日志
             [MBProgressHUD showError:error.description toView:nil];
         }else{
             [MBProgressHUD showSuccess:@"注册成功，请登录" toView:nil];

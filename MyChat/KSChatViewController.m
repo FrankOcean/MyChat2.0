@@ -53,6 +53,7 @@
     // 初始化cell的工具类
     self.chatCellTool = [self.tableView dequeueReusableCellWithIdentifier:receiverCellID];
     self.tableView.estimatedRowHeight = 90;
+    
     // 3.加载聊天消息
     [self loadChatMessages];
     

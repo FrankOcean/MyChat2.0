@@ -28,7 +28,7 @@
         <!--最近-->
         <scene sceneID="fKS-qb-0p3">
             <objects>
-                <tableViewController id="Pnd-5v-T7o" userLabel="最近" customClass="KSRecentViewController" sceneMemberID="viewController">
+                <tableViewController id="Pnd-5v-T7o" userLabel="最近" customClass="KSRecentViewController2" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CEL-C9-nxq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,6 +214,9 @@
                                         <state key="normal" image="chatBar_record">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="voiceBtnClick:" destination="qt1-G9-MZC" eventType="touchUpInside" id="837-Kf-ybh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x8-Tx-AMh" userLabel="add">
                                         <rect key="frame" x="282" y="8" width="30" height="30"/>
@@ -247,11 +250,26 @@
                                             <outlet property="delegate" destination="qt1-G9-MZC" id="XNF-sd-8WX"/>
                                         </connections>
                                     </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDV-5P-oTl">
+                                        <rect key="frame" x="46" y="8" width="190" height="33"/>
+                                        <state key="normal" title="按住请说话" backgroundImage="chatBar_recordBg">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" title="松开发送"/>
+                                        <connections>
+                                            <action selector="beginRecordAction:" destination="qt1-G9-MZC" eventType="touchDown" id="HdH-Dz-xpj"/>
+                                            <action selector="cancelRecordAction:" destination="qt1-G9-MZC" eventType="touchUpOutside" id="rY4-Ef-0eE"/>
+                                            <action selector="endRecordAction:" destination="qt1-G9-MZC" eventType="touchUpInside" id="ncf-yf-6Za"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="NUj-7E-lox" firstAttribute="leading" secondItem="XDV-5P-oTl" secondAttribute="trailing" constant="8" id="00T-S4-i18"/>
                                     <constraint firstItem="IuA-JU-cIf" firstAttribute="top" secondItem="OAt-zi-w7I" secondAttribute="top" constant="8" id="71n-HV-Tn7"/>
                                     <constraint firstItem="wba-dv-eg9" firstAttribute="leading" secondItem="kbt-jf-nhl" secondAttribute="trailing" constant="8" id="9OI-9N-89W"/>
+                                    <constraint firstAttribute="bottom" secondItem="XDV-5P-oTl" secondAttribute="bottom" constant="5" id="9aA-vu-1XQ"/>
                                     <constraint firstItem="7x8-Tx-AMh" firstAttribute="leading" secondItem="NUj-7E-lox" secondAttribute="trailing" constant="8" id="AKA-1s-19u"/>
                                     <constraint firstItem="IuA-JU-cIf" firstAttribute="leading" secondItem="kbt-jf-nhl" secondAttribute="trailing" constant="8" id="GGe-gI-Sd3"/>
                                     <constraint firstAttribute="height" constant="46" id="Gnj-6z-y6f"/>
@@ -261,9 +279,11 @@
                                     <constraint firstAttribute="trailing" secondItem="7x8-Tx-AMh" secondAttribute="trailing" constant="8" id="Phq-Y2-Pee"/>
                                     <constraint firstItem="wba-dv-eg9" firstAttribute="top" secondItem="OAt-zi-w7I" secondAttribute="top" constant="8" id="S4d-yy-kje"/>
                                     <constraint firstAttribute="bottom" secondItem="NUj-7E-lox" secondAttribute="bottom" constant="8" id="WPt-UL-lhr"/>
+                                    <constraint firstItem="XDV-5P-oTl" firstAttribute="leading" secondItem="kbt-jf-nhl" secondAttribute="trailing" constant="8" id="WkH-3q-9U2"/>
                                     <constraint firstItem="NUj-7E-lox" firstAttribute="leading" secondItem="wba-dv-eg9" secondAttribute="trailing" constant="8" id="YYQ-yo-pka"/>
                                     <constraint firstItem="kbt-jf-nhl" firstAttribute="leading" secondItem="OAt-zi-w7I" secondAttribute="leading" constant="8" id="fhd-an-Eao"/>
                                     <constraint firstAttribute="bottom" secondItem="IuA-JU-cIf" secondAttribute="bottom" constant="5" id="kF3-bo-zVl"/>
+                                    <constraint firstItem="XDV-5P-oTl" firstAttribute="top" secondItem="OAt-zi-w7I" secondAttribute="top" constant="8" id="m1c-7k-WkX"/>
                                     <constraint firstAttribute="bottom" secondItem="kbt-jf-nhl" secondAttribute="bottom" constant="8" id="zV0-MW-3Pt"/>
                                 </constraints>
                             </view>
@@ -288,7 +308,7 @@
                                                     <rect key="frame" x="61" y="15" width="42" height="21"/>
                                                     <color key="backgroundColor" red="0.87450987099999999" green="0.89411771299999998" blue="0.91764712329999998" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_receiver_bg" translatesAutoresizingMaskIntoConstraints="NO" id="mXe-WN-YHk" userLabel="bg">
@@ -332,7 +352,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-QZ-xTz" userLabel="msgLabel">
                                                     <rect key="frame" x="217" y="15" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -374,7 +394,10 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="3XY-Fh-iFM" id="d2o-Ww-yle"/>
+                        <outlet property="recordBtn" destination="XDV-5P-oTl" id="7si-N1-LtP"/>
                         <outlet property="tableView" destination="G4D-s7-ycC" id="lmz-77-xYM"/>
+                        <outlet property="textBg" destination="wba-dv-eg9" id="22m-P7-MF1"/>
+                        <outlet property="textView" destination="IuA-JU-cIf" id="I5z-yf-EJM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0DU-VV-rKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -673,6 +696,7 @@
         <image name="chatBar_face" width="30" height="30"/>
         <image name="chatBar_more" width="30" height="30"/>
         <image name="chatBar_record" width="30" height="30"/>
+        <image name="chatBar_recordBg" width="5" height="7"/>
         <image name="chatBar_recordSelected" width="30" height="30"/>
         <image name="chatBar_recordSelectedBg" width="5" height="7"/>
         <image name="chatBar_textBg" width="7" height="9"/>

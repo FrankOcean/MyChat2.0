@@ -8,12 +8,22 @@
 
 #import "KSChatViewController2.h"
 #import "KSChatCell2.h"
+#import "EMCDDeviceManager.h"
 
 @interface KSChatViewController2 ()<UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate,UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
-@property (strong, nonatomic) NSMutableArray *records;//聊天记录
+#pragma mark 控件与约束
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic)KSChatCell2 *chatCell2Tool;
+
+/**底部约束*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *recordBtn;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIImageView *textBg;
+
+#pragma mark 数据源
+@property (strong, nonatomic) NSMutableArray *records;//聊天记录
+
 @property (strong, nonatomic)EMConversation *conversation;//当前会话
 @end
 
@@ -47,6 +57,9 @@
     
     //3.加载聊天数据
     [self loadChatData];
+    
+    //4.隐藏录音按钮
+    self.recordBtn.hidden = YES;
 }
 
 #pragma mark -私有方法
@@ -59,6 +72,7 @@
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[EaseMob sharedInstance].chatManager removeDelegate:self];
 }
 
 -(void)kbWillShow:(NSNotification *)notification{
@@ -84,10 +98,21 @@
     EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:self.buddy.username conversationType:eConversationTypeChat];
     if (conversation) {//载20条
         long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
-        NSArray *records = [conversation loadNumbersOfMessages:20 before:timestamp];
+        NSArray *records = [conversation loadNumbersOfMessages:100 before:timestamp];
 //        NSLog(@"%@",[records[0] class]);
+        
+        // 标记信息为已读
+        [records enumerateObjectsUsingBlock:^(EMMessage *msg, NSUInteger idx, BOOL *stop) {
+            if (!msg.isRead && [msg.from isEqualToString:self.buddy.username]) {
+                [conversation markMessageWithId:msg.messageId asRead:YES];
+            }
+        }];
+        
         [self.records addObjectsFromArray:records];
     }
+    
+    self.conversation = conversation;
+    
 }
 #pragma mark -数据源方法
 
@@ -121,7 +146,12 @@
     if ([textView.text hasSuffix:@"\n"]) {
      
         NSLog(@"%@",textView.text);
-        [self sendWithText:textView.text];
+        // 把尾部的换行符去除
+        NSString *text = textView.text;
+        NSLog(@"%zd",text.length);
+        text = [text substringToIndex:text.length - 1];
+        NSLog(@"%zd",text.length);
+        [self sendWithText:text];
         textView.text = nil;
     }
 }
@@ -152,9 +182,14 @@
 
 -(void)didReceiveMessage:(EMMessage *)message{
     NSLog(@"%@",[NSThread currentThread]);
-        [self.records addObject:message];
+     [self.conversation markMessageWithId:message.messageId asRead:YES];
+    [self.records addObject:message];
     
     [self refreshDataAndScroll];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self scrollToBottom];
 }
 
 -(void)refreshDataAndScroll{
@@ -165,4 +200,67 @@
     
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.records.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
+
+-(void)scrollToBottom{
+    if (self.records.count == 0) {
+        return;
+    }
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.records.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+- (IBAction)voiceBtnClick:(UIButton *)btn {
+    [self.view endEditing:YES];
+    self.recordBtn.hidden =  !self.recordBtn.hidden;
+    self.textView.hidden = !self.textView.hidden;
+    self.textBg.hidden = !self.textBg.hidden;
+    if (self.textView.hidden == YES) {
+        [btn setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateNormal];
+    }else{
+        [btn setImage:[UIImage imageNamed:@"chatBar_record"] forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark -录音
+- (IBAction)beginRecordAction:(id)sender {
+    int x = arc4random() % 100000;
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    NSString *fileName = [NSString stringWithFormat:@"%d%d",(int)time,x];
+    
+    [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:fileName completion:^(NSError *error) {
+        
+    }];
+}
+- (IBAction)endRecordAction:(id)sender {
+    
+    [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
+
+        if (error) {
+            NSLog(@"%@",error);
+        }else{
+        NSLog(@"录音的本地路径 %@",recordPath);
+        }
+        // 发送
+        EMChatVoice *voice = [[EMChatVoice alloc] initWithFile:recordPath displayName:@"audio"];
+        EMVoiceMessageBody *voiceBody = [[EMVoiceMessageBody alloc] initWithChatObject:voice];
+        voiceBody.duration = aDuration;
+        EMMessage *message = [[EMMessage alloc] initWithReceiver:self.buddy.username bodies:@[voiceBody]];
+        message.messageType = eMessageTypeChat;
+
+        [self.records addObject:message];
+        
+        [self refreshDataAndScroll];
+        
+        [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil prepare:^(EMMessage *message, EMError *error) {
+            
+        } onQueue:nil completion:^(EMMessage *message, EMError *error) {
+            
+        } onQueue:nil];
+        
+    }];
+}
+
+- (IBAction)cancelRecordAction:(id)sender {
+    [[EMCDDeviceManager sharedInstance] cancelCurrentRecording];
+}
+
 @end

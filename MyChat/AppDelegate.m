@@ -36,6 +36,10 @@
     }else{
         KSLog(@"未登录");
     }
+    
+    // 添加badge权限
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+    [application registerUserNotificationSettings:settings];
     return YES;
 }
 

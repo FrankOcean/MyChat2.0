@@ -9,6 +9,7 @@
 #import "KSChatViewController2.h"
 #import "KSChatCell2.h"
 #import "EMCDDeviceManager.h"
+#import "KSAudioPlayTool.h"
 
 @interface KSChatViewController2 ()<UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate,UITextViewDelegate>
 #pragma mark 控件与约束
@@ -263,4 +264,7 @@
     [[EMCDDeviceManager sharedInstance] cancelCurrentRecording];
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [KSAudioPlayTool stop];
+}
 @end

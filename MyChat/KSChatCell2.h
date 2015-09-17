@@ -11,6 +11,7 @@
 
 @interface KSChatCell2 : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *msgLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @property (strong, nonatomic) EMMessage *message;
 //cell的高度

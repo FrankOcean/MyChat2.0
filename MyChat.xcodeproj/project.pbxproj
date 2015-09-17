@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B04A9CB01BAAA200003EE3C7 /* KSAudioPlayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B04A9CAF1BAAA200003EE3C7 /* KSAudioPlayTool.m */; };
 		B06E6C461B8D70CF0017EFF3 /* KSChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6C451B8D70CF0017EFF3 /* KSChatViewController.m */; };
 		B06E6C8E1B8D7EA60017EFF3 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6C8D1B8D7EA60017EFF3 /* THProgressView.m */; };
 		B06E6CB01B8DF5720017EFF3 /* KSChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6CAF1B8DF5720017EFF3 /* KSChatCell.m */; };
@@ -65,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B04A9CAE1BAAA200003EE3C7 /* KSAudioPlayTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAudioPlayTool.h; sourceTree = "<group>"; };
+		B04A9CAF1BAAA200003EE3C7 /* KSAudioPlayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAudioPlayTool.m; sourceTree = "<group>"; };
 		B06E6C441B8D70CF0017EFF3 /* KSChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatViewController.h; sourceTree = "<group>"; };
 		B06E6C451B8D70CF0017EFF3 /* KSChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatViewController.m; sourceTree = "<group>"; };
 		B06E6C8C1B8D7EA60017EFF3 /* THProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgressView.h; sourceTree = "<group>"; };
@@ -880,6 +883,8 @@
 				B0F184681BA7EFB500712C92 /* KSChatCell2.m */,
 				B083B9701BA928CB005C7600 /* KSRecentViewController2.h */,
 				B083B9711BA928CB005C7600 /* KSRecentViewController2.m */,
+				B04A9CAE1BAAA200003EE3C7 /* KSAudioPlayTool.h */,
+				B04A9CAF1BAAA200003EE3C7 /* KSAudioPlayTool.m */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -989,6 +994,7 @@
 				B083B9721BA928CB005C7600 /* KSRecentViewController2.m in Sources */,
 				B0E8B7D31B8F353D0029E5D5 /* EMCDDeviceManagerBase.m in Sources */,
 				B08FB8AA1B8AF6E80097FEEA /* KSLoginViewController.m in Sources */,
+				B04A9CB01BAAA200003EE3C7 /* KSAudioPlayTool.m in Sources */,
 				B0E8B7D11B8F353D0029E5D5 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				B0E8B7E51B8F36080029E5D5 /* wav.mm in Sources */,
 				B0F184691BA7EFB500712C92 /* KSChatCell2.m in Sources */,

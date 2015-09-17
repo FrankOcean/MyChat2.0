@@ -329,6 +329,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="bgImageView" destination="mXe-WN-YHk" id="ZAv-xe-FJV"/>
                                             <outlet property="msgLabel" destination="5Sa-Zi-2MV" id="yX4-yV-8CG"/>
                                         </connections>
                                     </tableViewCell>
@@ -368,6 +369,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="bgImageView" destination="M3O-g3-vb0" id="gpj-sU-Xlz"/>
                                             <outlet property="msgLabel" destination="nLd-QZ-xTz" id="dlC-cz-cTl"/>
                                         </connections>
                                     </tableViewCell>

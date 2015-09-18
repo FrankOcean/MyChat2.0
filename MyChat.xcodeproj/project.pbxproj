@@ -320,7 +320,7 @@
 		B06E6C411B8D708F0017EFF3 /* Chat【聊天】 */ = {
 			isa = PBXGroup;
 			children = (
-				B0F184661BA7C10A00712C92 /* Test */,
+				B0F184661BA7C10A00712C92 /* Test2 */,
 				B0AF1FA41B98014700E768BD /* Tool */,
 				B06E6C431B8D70B80017EFF3 /* View */,
 				B06E6C421B8D70AD0017EFF3 /* Controller */,
@@ -918,14 +918,14 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		B0F184661BA7C10A00712C92 /* Test */ = {
+		B0F184661BA7C10A00712C92 /* Test2 */ = {
 			isa = PBXGroup;
 			children = (
 				B04A9CBC1BAC0E2F003EE3C7 /* Help */,
 				B04A9CBB1BAC0E1A003EE3C7 /* View */,
 				B04A9CBA1BAC0E0A003EE3C7 /* Controller */,
 			);
-			name = Test;
+			name = Test2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

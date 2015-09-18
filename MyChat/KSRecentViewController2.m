@@ -7,6 +7,7 @@
 //
 
 #import "KSRecentViewController2.h"
+#import "KSChatViewController2.h"
 
 
 @interface KSRecentViewController2 ()<EMChatManagerDelegate>
@@ -51,6 +52,19 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@ 未读取消息数%zd",converstaion.chatter,converstaion.unreadMessagesCount];
     
 
+    // 最后一条信息
+    EMMessage *lastMsg = [converstaion latestMessage];
+    
+    id body = lastMsg.messageBodies[0];
+    if ([body isKindOfClass:[EMTextMessageBody class]]) {//文本消息
+        EMTextMessageBody *textBody = body;
+        cell.detailTextLabel.text = textBody.text;
+    }else if([body isKindOfClass:[EMVoiceMessageBody class]]){//音频
+        EMVoiceMessageBody *voiceBody = body;
+        cell.detailTextLabel.text = voiceBody.displayName;
+    }else{
+        cell.detailTextLabel.text = @"未处理的消息类型";
+    }
     
     return cell;
 }
@@ -89,6 +103,14 @@
     //AppIcon的badge
     [UIApplication sharedApplication].applicationIconBadgeNumber = totalCount;
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    KSChatViewController2 *chatVc = [sb instantiateViewControllerWithIdentifier:@"KSChatViewController2"];
+    EMConversation *conversation = self.conversations[indexPath.row];
+    chatVc.buddy = [EMBuddy buddyWithUsername:conversation.chatter];
+    [self.navigationController pushViewController:chatVc animated:YES];
 }
 
 @end

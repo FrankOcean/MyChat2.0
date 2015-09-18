@@ -29,12 +29,12 @@
         <scene sceneID="fKS-qb-0p3">
             <objects>
                 <tableViewController id="Pnd-5v-T7o" userLabel="最近" customClass="KSRecentViewController2" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CEL-C9-nxq">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="CEL-C9-nxq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationCell" textLabel="i2l-Vn-dKt" detailTextLabel="jYO-hC-99m" style="IBUITableViewCellStyleValue1" id="YMD-oc-U8O">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationCell" textLabel="i2l-Vn-dKt" detailTextLabel="jYO-hC-99m" imageView="Aad-dc-xVL" rowHeight="62" style="IBUITableViewCellStyleSubtitle" id="YMD-oc-U8O">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YMD-oc-U8O" id="V9a-D8-T45">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -45,17 +45,17 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jYO-hC-99m">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jYO-hC-99m">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="chatListCellHead" id="Aad-dc-xVL">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Jpc-Jk-hdM" kind="show" id="098-mq-Nuj"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -63,9 +63,7 @@
                             <outlet property="delegate" destination="Pnd-5v-T7o" id="Shl-By-rFX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recent" id="w8G-jq-OUF">
-                        <barButtonItem key="rightBarButtonItem" title="chat2" id="Bsu-Mn-vcV"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Recent" id="w8G-jq-OUF"/>
                     <connections>
                         <segue destination="qt1-G9-MZC" kind="show" identifier="toChat2Page" id="rA4-Or-efF"/>
                     </connections>
@@ -96,15 +94,32 @@
         <scene sceneID="xE1-qT-h6Y">
             <objects>
                 <tableViewController id="3eW-RG-QRY" userLabel="通讯录" customClass="KSContactsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="570-c9-OhK">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" id="570-c9-OhK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContactCell" id="U4C-Bm-Zzu">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContactCell" textLabel="wUG-TK-Afy" detailTextLabel="a2j-v8-xo0" imageView="MtX-wq-BYd" rowHeight="67" style="IBUITableViewCellStyleSubtitle" id="U4C-Bm-Zzu">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4C-Bm-Zzu" id="CzB-ea-cRh">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wUG-TK-Afy">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a2j-v8-xo0">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="chatListCellHead" id="MtX-wq-BYd">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -113,7 +128,7 @@
                             <outlet property="delegate" destination="3eW-RG-QRY" id="E0l-XU-Drl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="通讯录" id="4o7-2E-Bci">
+                    <navigationItem key="navigationItem" title="Contacts" id="4o7-2E-Bci">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="vWN-KI-2Hl">
                             <connections>
                                 <segue destination="nJ1-Gf-nRI" kind="show" id="IbL-TJ-n5R"/>

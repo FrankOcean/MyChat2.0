@@ -10,11 +10,13 @@
 #import "KSChatCell2.h"
 #import "EMCDDeviceManager.h"
 #import "KSAudioPlayTool.h"
+#import "XHMessageTextView.h"
 
 @interface KSChatViewController2 ()<UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate,UITextViewDelegate>
 #pragma mark 控件与约束
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic)KSChatCell2 *chatCell2Tool;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewHeihgt;
 
 /**底部约束*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
@@ -143,18 +145,49 @@
 }
 
 
+
+
 -(void)textViewDidChange:(UITextView *)textView{
+    
+#pragma 复位光标
+    [textView setContentOffset:CGPointZero animated:YES];
+//   [textView scrollRangeToVisible:textView.selectedRange];
+    
+#pragma mark 计算高度
+    CGFloat minHeight = 33;
+    CGFloat maxHeight = 68;
+    CGFloat toHeight = 0;
+    NSLog(@"111111---contentSize: %@",NSStringFromCGSize(textView.contentSize));
+    if(textView.contentSize.height < minHeight){
+        toHeight = minHeight;
+    }else if (textView.contentSize.height > 68){
+        toHeight = maxHeight;
+    }else{
+        toHeight = textView.contentSize.height;
+    }
+   
+#pragma mark 发消息
     if ([textView.text hasSuffix:@"\n"]) {
-     
-        NSLog(@"%@",textView.text);
         // 把尾部的换行符去除
         NSString *text = textView.text;
-        NSLog(@"%zd",text.length);
         text = [text substringToIndex:text.length - 1];
-        NSLog(@"%zd",text.length);
         [self sendWithText:text];
         textView.text = nil;
-    }
+        
+        toHeight = minHeight;
+      }
+    
+
+    
+#pragma mark 更改高度
+//    return;
+    self.inputViewHeihgt.constant = toHeight + 8 + 5;
+    NSLog(@"2222----%f",self.inputViewHeihgt.constant);
+        [textView scrollRangeToVisible:textView.selectedRange];
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view layoutIfNeeded];
+        [textView scrollRangeToVisible:textView.selectedRange];
+    }];
 }
 
 
@@ -182,8 +215,8 @@
 
 
 -(void)didReceiveMessage:(EMMessage *)message{
-    NSLog(@"%@",[NSThread currentThread]);
-     [self.conversation markMessageWithId:message.messageId asRead:YES];
+    
+    [self.conversation markMessageWithId:message.messageId asRead:YES];
     [self.records addObject:message];
     
     [self refreshDataAndScroll];
@@ -195,9 +228,6 @@
 
 -(void)refreshDataAndScroll{
     [self.tableView reloadData];
-    
-//    CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height);
-//    [self.tableView setContentOffset:offset animated:YES];
     
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.records.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
@@ -216,9 +246,15 @@
     self.textBg.hidden = !self.textBg.hidden;
     if (self.textView.hidden == YES) {
         [btn setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateNormal];
+        self.inputViewHeihgt.constant = 46;
     }else{
         [btn setImage:[UIImage imageNamed:@"chatBar_record"] forState:UIControlStateNormal];
+        [self textViewDidChange:self.textView];
+        [self.textView becomeFirstResponder];
+       
     }
+    
+
 }
 
 #pragma mark -录音
@@ -265,6 +301,7 @@
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    //准备滑动表格时，要停止播放语音
     [KSAudioPlayTool stop];
 }
 @end

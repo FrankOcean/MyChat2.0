@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B04A9CB01BAAA200003EE3C7 /* KSAudioPlayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B04A9CAF1BAAA200003EE3C7 /* KSAudioPlayTool.m */; };
+		B04A9CB31BAAC96C003EE3C7 /* XHMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B04A9CB21BAAC96C003EE3C7 /* XHMessageTextView.m */; };
 		B06E6C461B8D70CF0017EFF3 /* KSChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6C451B8D70CF0017EFF3 /* KSChatViewController.m */; };
 		B06E6C8E1B8D7EA60017EFF3 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6C8D1B8D7EA60017EFF3 /* THProgressView.m */; };
 		B06E6CB01B8DF5720017EFF3 /* KSChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B06E6CAF1B8DF5720017EFF3 /* KSChatCell.m */; };
@@ -68,6 +69,8 @@
 /* Begin PBXFileReference section */
 		B04A9CAE1BAAA200003EE3C7 /* KSAudioPlayTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAudioPlayTool.h; sourceTree = "<group>"; };
 		B04A9CAF1BAAA200003EE3C7 /* KSAudioPlayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAudioPlayTool.m; sourceTree = "<group>"; };
+		B04A9CB11BAAC96C003EE3C7 /* XHMessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHMessageTextView.h; sourceTree = "<group>"; };
+		B04A9CB21BAAC96C003EE3C7 /* XHMessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessageTextView.m; sourceTree = "<group>"; };
 		B06E6C441B8D70CF0017EFF3 /* KSChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatViewController.h; sourceTree = "<group>"; };
 		B06E6C451B8D70CF0017EFF3 /* KSChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatViewController.m; sourceTree = "<group>"; };
 		B06E6C8C1B8D7EA60017EFF3 /* THProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgressView.h; sourceTree = "<group>"; };
@@ -877,6 +880,8 @@
 		B0F184661BA7C10A00712C92 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				B04A9CB11BAAC96C003EE3C7 /* XHMessageTextView.h */,
+				B04A9CB21BAAC96C003EE3C7 /* XHMessageTextView.m */,
 				B0F184631BA7C0FC00712C92 /* KSChatViewController2.h */,
 				B0F184641BA7C0FC00712C92 /* KSChatViewController2.m */,
 				B0F184671BA7EFB500712C92 /* KSChatCell2.h */,
@@ -1006,6 +1011,7 @@
 				B08FB8A41B8AF6E80097FEEA /* main.m in Sources */,
 				B0E8B7D21B8F353D0029E5D5 /* EMCDDeviceManager+Remind.m in Sources */,
 				B0E8B7D01B8F353D0029E5D5 /* EMCDDeviceManager+Microphone.m in Sources */,
+				B04A9CB31BAAC96C003EE3C7 /* XHMessageTextView.m in Sources */,
 				B06E6C8E1B8D7EA60017EFF3 /* THProgressView.m in Sources */,
 				B0F184651BA7C0FC00712C92 /* KSChatViewController2.m in Sources */,
 				B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */,

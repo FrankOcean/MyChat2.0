@@ -18,6 +18,9 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     [self.bgImageView addGestureRecognizer:tap];
     self.bgImageView.userInteractionEnabled = YES;
+    
+    self.backgroundColor = [UIColor clearColor];
+    self.selectedBackgroundView = [[UIView alloc] init];
 }
 
 - (void)tap:(UITapGestureRecognizer *)tap{

@@ -186,10 +186,10 @@
             </objects>
             <point key="canvasLocation" x="-21" y="194"/>
         </scene>
-        <!--测试-->
+        <!--聊天界面2-->
         <scene sceneID="58l-Je-f2e">
             <objects>
-                <viewController storyboardIdentifier="KSChatViewController2" hidesBottomBarWhenPushed="YES" id="qt1-G9-MZC" customClass="KSChatViewController2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KSChatViewController2" hidesBottomBarWhenPushed="YES" id="qt1-G9-MZC" userLabel="聊天界面2" customClass="KSChatViewController2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yZd-e4-pN3"/>
                         <viewControllerLayoutGuide type="bottom" id="54v-Iv-2Jq"/>
@@ -201,6 +201,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAt-zi-w7I" userLabel="InputToolBar">
                                 <rect key="frame" x="0.0" y="434" width="320" height="46"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messageToolbarBg" translatesAutoresizingMaskIntoConstraints="NO" id="DeG-U1-dzy" userLabel="inputTollBarBg">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbt-jf-nhl" userLabel="voice">
                                         <rect key="frame" x="8" y="8" width="30" height="30"/>
                                         <constraints>
@@ -241,7 +244,7 @@
                                         <rect key="frame" x="46" y="8" width="190" height="33"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="qt1-G9-MZC" id="XNF-sd-8WX"/>
                                         </connections>
@@ -260,12 +263,13 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="NUj-7E-lox" firstAttribute="leading" secondItem="XDV-5P-oTl" secondAttribute="trailing" constant="8" id="00T-S4-i18"/>
                                     <constraint firstItem="IuA-JU-cIf" firstAttribute="top" secondItem="OAt-zi-w7I" secondAttribute="top" constant="8" id="71n-HV-Tn7"/>
+                                    <constraint firstAttribute="bottom" secondItem="DeG-U1-dzy" secondAttribute="bottom" id="93l-2c-GRa"/>
                                     <constraint firstItem="wba-dv-eg9" firstAttribute="leading" secondItem="kbt-jf-nhl" secondAttribute="trailing" constant="8" id="9OI-9N-89W"/>
                                     <constraint firstAttribute="bottom" secondItem="XDV-5P-oTl" secondAttribute="bottom" constant="5" id="9aA-vu-1XQ"/>
+                                    <constraint firstItem="DeG-U1-dzy" firstAttribute="leading" secondItem="OAt-zi-w7I" secondAttribute="leading" id="9tW-PG-8gI"/>
                                     <constraint firstItem="7x8-Tx-AMh" firstAttribute="leading" secondItem="NUj-7E-lox" secondAttribute="trailing" constant="8" id="AKA-1s-19u"/>
                                     <constraint firstItem="IuA-JU-cIf" firstAttribute="leading" secondItem="kbt-jf-nhl" secondAttribute="trailing" constant="8" id="GGe-gI-Sd3"/>
                                     <constraint firstAttribute="height" constant="46" id="Gnj-6z-y6f"/>
@@ -274,16 +278,18 @@
                                     <constraint firstAttribute="bottom" secondItem="wba-dv-eg9" secondAttribute="bottom" constant="5" id="PSF-UA-1JR"/>
                                     <constraint firstAttribute="trailing" secondItem="7x8-Tx-AMh" secondAttribute="trailing" constant="8" id="Phq-Y2-Pee"/>
                                     <constraint firstItem="wba-dv-eg9" firstAttribute="top" secondItem="OAt-zi-w7I" secondAttribute="top" constant="8" id="S4d-yy-kje"/>
+                                    <constraint firstItem="DeG-U1-dzy" firstAttribute="top" secondItem="OAt-zi-w7I" secondAttribute="top" id="VIb-PY-ULj"/>
                                     <constraint firstAttribute="bottom" secondItem="NUj-7E-lox" secondAttribute="bottom" constant="8" id="WPt-UL-lhr"/>
                                     <constraint firstItem="XDV-5P-oTl" firstAttribute="leading" secondItem="kbt-jf-nhl" secondAttribute="trailing" constant="8" id="WkH-3q-9U2"/>
                                     <constraint firstItem="NUj-7E-lox" firstAttribute="leading" secondItem="wba-dv-eg9" secondAttribute="trailing" constant="8" id="YYQ-yo-pka"/>
+                                    <constraint firstAttribute="trailing" secondItem="DeG-U1-dzy" secondAttribute="trailing" id="eHV-jy-n92"/>
                                     <constraint firstItem="kbt-jf-nhl" firstAttribute="leading" secondItem="OAt-zi-w7I" secondAttribute="leading" constant="8" id="fhd-an-Eao"/>
                                     <constraint firstAttribute="bottom" secondItem="IuA-JU-cIf" secondAttribute="bottom" constant="5" id="kF3-bo-zVl"/>
                                     <constraint firstItem="XDV-5P-oTl" firstAttribute="top" secondItem="OAt-zi-w7I" secondAttribute="top" constant="8" id="m1c-7k-WkX"/>
                                     <constraint firstAttribute="bottom" secondItem="kbt-jf-nhl" secondAttribute="bottom" constant="8" id="zV0-MW-3Pt"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="G4D-s7-ycC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="G4D-s7-ycC">
                                 <rect key="frame" x="0.0" y="64" width="320" height="370"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -302,7 +308,6 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="5Sa-Zi-2MV" userLabel="msgLabel">
                                                     <rect key="frame" x="61" y="15" width="42" height="21"/>
-                                                    <color key="backgroundColor" red="0.87450987099999999" green="0.89411771299999998" blue="0.91764712329999998" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -312,7 +317,6 @@
                                                     <rect key="contentStretch" x="0.5" y="0.69999999999999996" width="0.0" height="0.0"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="5Sa-Zi-2MV" firstAttribute="leading" secondItem="zyK-Ob-ko2" secondAttribute="trailing" constant="20" id="93y-wy-ZHB"/>
                                                 <constraint firstItem="mXe-WN-YHk" firstAttribute="top" secondItem="5Sa-Zi-2MV" secondAttribute="top" constant="-10" id="HW4-rd-0aL"/>
@@ -367,6 +371,29 @@
                                         <connections>
                                             <outlet property="bgImageView" destination="M3O-g3-vb0" id="gpj-sU-Xlz"/>
                                             <outlet property="msgLabel" destination="nLd-QZ-xTz" id="dlC-cz-cTl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeCell" rowHeight="20" id="hSl-XF-kqe" userLabel="TimeCell" customClass="KSTimeCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSl-XF-kqe" id="lmr-dP-RwN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaH-sf-GnN">
+                                                    <rect key="frame" x="144" y="2" width="33" height="16"/>
+                                                    <color key="backgroundColor" red="0.87450987099999999" green="0.89411771299999998" blue="0.91764712329999998" alpha="1" colorSpace="deviceRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="oaH-sf-GnN" secondAttribute="centerX" id="CKd-aU-Ngw"/>
+                                                <constraint firstAttribute="centerY" secondItem="oaH-sf-GnN" secondAttribute="centerY" id="KFx-ei-g85"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="timeLabel" destination="oaH-sf-GnN" id="XXj-uD-EI5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

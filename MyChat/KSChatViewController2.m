@@ -8,9 +8,11 @@
 
 #import "KSChatViewController2.h"
 #import "KSChatCell2.h"
+#import "KSTimeCell.h"
 #import "EMCDDeviceManager.h"
 #import "KSAudioPlayTool.h"
 #import "XHMessageTextView.h"
+#import "KSTimeTool.h"
 
 @interface KSChatViewController2 ()<UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate,UITextViewDelegate>
 #pragma mark 控件与约束
@@ -23,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *recordBtn;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *textBg;
+@property (copy, nonatomic) NSString  *lastTime;/** 最后一条的时间*/
 
 #pragma mark 数据源
 @property (strong, nonatomic) NSMutableArray *records;//聊天记录
@@ -63,6 +66,12 @@
     
     //4.隐藏录音按钮
     self.recordBtn.hidden = YES;
+    
+    //5.去除分隔线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    //6.设置背景
+    self.tableView.backgroundColor = [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1];
 }
 
 #pragma mark -私有方法
@@ -73,10 +82,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[EaseMob sharedInstance].chatManager removeDelegate:self];
-}
+
 
 -(void)kbWillShow:(NSNotification *)notification{
     CGFloat kbHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
@@ -91,30 +97,46 @@
     self.bottomConstraint.constant = 0;
 }
 
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
-}
-
 -(void)loadChatData{
     // 1.获取当前会话对象
-    EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:self.buddy.username conversationType:eConversationTypeChat];
-    if (conversation) {//载20条
+    self.conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:self.buddy.username conversationType:eConversationTypeChat];
+    if (self.conversation) {//载20条
+        // 当前时间
         long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
-        NSArray *records = [conversation loadNumbersOfMessages:100 before:timestamp];
-//        NSLog(@"%@",[records[0] class]);
         
-        // 标记信息为已读
+        NSArray *records = [self.conversation loadNumbersOfMessages:100 before:timestamp];
+        
+        // 遍历信息为已读
         [records enumerateObjectsUsingBlock:^(EMMessage *msg, NSUInteger idx, BOOL *stop) {
-            if (!msg.isRead && [msg.from isEqualToString:self.buddy.username]) {
-                [conversation markMessageWithId:msg.messageId asRead:YES];
-            }
+            [self addDataSourceWithMessage:msg];
         }];
-        
-        [self.records addObjectsFromArray:records];
     }
     
-    self.conversation = conversation;
+    
+    
+}
+
+/**
+ * 添加数据源
+ */
+-(void)addDataSourceWithMessage:(EMMessage *)msg{
+    NSString *timeStr = [KSTimeTool timeStr:msg.timestamp];
+    
+    // 1.添加 “时间字符串” 到数据源
+    if (![self.lastTime isEqualToString:timeStr] || self.lastTime == nil ) {
+        [self.records addObject:timeStr];
+        NSLog(@"timeStr... %@",timeStr);
+        self.lastTime = timeStr;
+    }
+  
+    
+    // 2.添加消息模型
+    [self.records addObject:msg];
+    
+    // 3.设置消息为已读
+    if (!msg.isRead && [msg.from isEqualToString:self.buddy.username]) {
+        [self.conversation markMessageWithId:msg.messageId asRead:YES];
+    }
     
 }
 #pragma mark -数据源方法
@@ -124,6 +146,14 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    // 时间
+    if ([self.records[indexPath.row] isKindOfClass:[NSString class]]) {
+        KSTimeCell *timeCell = [tableView dequeueReusableCellWithIdentifier:@"TimeCell"];
+        timeCell.timeLabel.text = self.records[indexPath.row];
+       return timeCell;
+    }
+    
     KSChatCell2 *cell = nil;
     EMMessage *msg = self.records[indexPath.row];
     if ([msg.to isEqualToString:self.buddy.username]) {
@@ -131,6 +161,8 @@
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"ReceiverCell"];
     }
+    
+    
 
     
     cell.message = self.records[indexPath.row];
@@ -139,14 +171,17 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    // 时间返回20的高度
+    if ([self.records[indexPath.row] isKindOfClass:[NSString class]]) {
+        return 20;
+    }
     self.chatCell2Tool.message = self.records[indexPath.row];
     return [self.chatCell2Tool cellHeight];
 }
 
 
 
-
+#pragma mark - UITextView代理方法
 -(void)textViewDidChange:(UITextView *)textView{
     
 #pragma 复位光标
@@ -157,7 +192,7 @@
     CGFloat minHeight = 33;
     CGFloat maxHeight = 68;
     CGFloat toHeight = 0;
-    NSLog(@"111111---contentSize: %@",NSStringFromCGSize(textView.contentSize));
+//    NSLog(@"111111---contentSize: %@",NSStringFromCGSize(textView.contentSize));
     if(textView.contentSize.height < minHeight){
         toHeight = minHeight;
     }else if (textView.contentSize.height > 68){
@@ -182,10 +217,12 @@
 #pragma mark 更改高度
 //    return;
     self.inputViewHeihgt.constant = toHeight + 8 + 5;
+
     NSLog(@"2222----%f",self.inputViewHeihgt.constant);
         [textView scrollRangeToVisible:textView.selectedRange];
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
+#warning 动画结束后，再滚动到可见区域
         [textView scrollRangeToVisible:textView.selectedRange];
     }];
 }
@@ -201,7 +238,7 @@
     // 生成message
     EMMessage *message = [[EMMessage alloc] initWithReceiver:self.buddy.username bodies:@[body]];
     message.messageType = eMessageTypeChat; // 设置为单聊消息
-    [self.records addObject:message];
+    [self addDataSourceWithMessage:message];
 
     [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil prepare:^(EMMessage *message, EMError *error) {
         NSLog(@"准备 %@",error);
@@ -213,18 +250,18 @@
 }
 
 
-
+#pragma mark 接收到好友发的消息
 -(void)didReceiveMessage:(EMMessage *)message{
     
-    [self.conversation markMessageWithId:message.messageId asRead:YES];
-    [self.records addObject:message];
+//    [self.conversation markMessageWithId:message.messageId asRead:YES];
+//    [self.records addObject:message];
+
+    [self addDataSourceWithMessage:message];
     
     [self refreshDataAndScroll];
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [self scrollToBottom];
-}
+
 
 -(void)refreshDataAndScroll{
     [self.tableView reloadData];
@@ -304,4 +341,15 @@
     //准备滑动表格时，要停止播放语音
     [KSAudioPlayTool stop];
 }
+
+#pragma mark -生命周期
+-(void)viewDidAppear:(BOOL)animated{
+    [self scrollToBottom];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[EaseMob sharedInstance].chatManager removeDelegate:self];
+}
+
 @end

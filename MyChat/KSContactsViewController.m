@@ -8,7 +8,6 @@
 
 #import "KSContactsViewController.h"
 #import "KSChatViewController.h"
-#import "KSChatViewController2.h"
 
 @interface KSContactsViewController ()<EMChatManagerDelegate>
 /**
@@ -96,6 +95,7 @@
     [EMAlertView showAlertWithTitle:@"好友接收提醒" message:msg];
 }
 
+
 - (IBAction)beginRefreshAction:(UIRefreshControl *)rc {
     //[self getFriendsListFromServer];
     // 重新赋值数据源
@@ -128,14 +128,13 @@
         NSInteger row = [self.tableView indexPathForSelectedRow].row;
         KSChatViewController *chatVc = desVc;
         chatVc.buddy = self.friendsList[row];
-        chatVc.isGroup = NO;
     }
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    KSChatViewController2 *chatVc = [sb instantiateViewControllerWithIdentifier:@"KSChatViewController2"];
+    KSChatViewController *chatVc = [sb instantiateViewControllerWithIdentifier:@"KSChatViewController2"];
     chatVc.buddy = self.friendsList[indexPath.row];
     [self.navigationController pushViewController:chatVc animated:YES];
 }

@@ -1,21 +1,20 @@
 //
-//  KSChatCell.h
+//  KSChatCell2.h
 //  MyChat
 //
-//  Created by Vincent_Guo on 15/8/26.
+//  Created by Vincent_Guo on 15/9/15.
 //  Copyright (c) 2015年 Kwok_Sir. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "EMMessage.h"
 
-static NSString *receiverCellID = @"ReceiverCell";
-static NSString *senderCellID = @"SenderCell";
 
 @interface KSChatCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *msgLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 
-@property(nonatomic,strong)EMMessage *message;
-
+@property (strong, nonatomic) EMMessage *message;
+//cell的高度
 -(CGFloat)cellHeight;
 
 @end

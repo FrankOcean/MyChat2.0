@@ -1,171 +1,121 @@
 //
-//  KSChatCell.m
+//  KSChatCell2.m
 //  MyChat
 //
-//  Created by Vincent_Guo on 15/8/26.
+//  Created by Vincent_Guo on 15/9/15.
 //  Copyright (c) 2015年 Kwok_Sir. All rights reserved.
 //
 
 #import "KSChatCell.h"
-#import "EMCDDeviceManager.h"
-#import "KSVoiceAnimationTool.h"
-
-@interface KSChatCell()
-/** 头像*/
-@property (weak, nonatomic) IBOutlet UIImageView *headImgView;
-
-/** 聊天内容文字*/
-@property (weak, nonatomic) IBOutlet UILabel *chatTextLabel;
-@end
+#import "KSAudioPlayTool.h"
 
 @implementation KSChatCell
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-          [self setupCellStype];
-    }
+- (void)awakeFromNib {
+    // Initialization code
+    [self.contentView bringSubviewToFront:self.msgLabel];
     
-    return self;
-}
-
--(id)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setupCellStype];
-    }
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [self.bgImageView addGestureRecognizer:tap];
+    self.bgImageView.userInteractionEnabled = YES;
     
-    return self;
-}
-
-// 设置cell的样式
--(void)setupCellStype{
     self.backgroundColor = [UIColor clearColor];
+    self.selectedBackgroundView = [[UIView alloc] init];
+}
+
+- (void)tap:(UITapGestureRecognizer *)tap{
+    NSLog(@"%s",__func__);
+    BOOL isReceiver = [self.reuseIdentifier isEqualToString:@"ReceiverCell"];
+    id body = self.message.messageBodies[0];
+    if ([body isKindOfClass:[EMVoiceMessageBody class]]) {
+        [KSAudioPlayTool playWithMessage:self.message atLabel:self.msgLabel receiver:isReceiver];
+    }
+}
+
+-(CGFloat)cellHeight{
+    //重新布局子控件
+    [self layoutIfNeeded];
+    return 15 + self.msgLabel.bounds.size.height + 10 + 10;
     
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+#warning 不用下面的方法
+//    [self sizeToFit];
+//    return self.bounds.size.height + 10;
 
-}
-
--(void)awakeFromNib{
-    self.chatTextLabel.backgroundColor = [UIColor clearColor];
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self];
-//    NSLog(@"%@ %@ %@",touch.view,NSStringFromCGRect(self.chatTextLabel.frame),NSStringFromCGPoint(point));
-    if (CGRectContainsPoint(self.chatTextLabel.frame, point)) {
-        NSLog(@"点击label");
-        [self labelClick];
-    }
-}
-
--(void)labelClick{
-    if (self.message.messageBodies.count > 0) {
-        // 判断消息体的类型
-        id body = self.message.messageBodies[0];
-        if ([body isKindOfClass:[EMVoiceMessageBody class]]) {//播放语音
-            EMVoiceMessageBody *voiceBody = body;
-            // 本地存在语音文件，就播放本地的，不存在，就播放网络
-            NSFileManager *fileMng = [NSFileManager defaultManager];
-            NSString *filePath = nil;
-            if([fileMng fileExistsAtPath:voiceBody.localPath]){
-                KSLog(@"%@ 存在",voiceBody.localPath);
-                filePath = voiceBody.localPath;
-            }else{
-                KSLog(@"%@ 不存在",voiceBody.localPath);
-                filePath = voiceBody.remotePath;
-            }
-            [KSVoiceAnimationTool startAnimationWithLabel:self.chatTextLabel receiver:[self.reuseIdentifier isEqualToString:receiverCellID]];
-            [[EMCDDeviceManager sharedInstance] asyncPlayingWithPath:filePath completion:^(NSError *error) {
-                [KSVoiceAnimationTool endAnimation];
-                NSLog(@"播放完成%@",error);
-            }];
-        }
-    }
+  
+    
 }
 
 -(void)setMessage:(EMMessage *)message{
     _message = message;
     
-    // 显示内容
-    if(message.messageBodies.count > 0){
-        // 获取消息体
-        id body = message.messageBodies[0];
-        
-        if ([body isKindOfClass:[EMTextMessageBody class]]) {//普通文本
-            EMTextMessageBody *textBody = body;
-            // 显示文字
-            self.chatTextLabel.text = textBody.text;
-        }else if([body isKindOfClass:[EMVoiceMessageBody class]]){//语音
-            // 5.显示语音图片和时间
-            self.chatTextLabel.attributedText = [self voiceAttStr:body];
-        }else{
-            self.chatTextLabel.text = @"图片/或者视频";
-        }
-        
-        [self.contentView bringSubviewToFront:self.chatTextLabel];
-        
+    // 消息体
+    id body = message.messageBodies[0];
+    if ([body isKindOfClass:[EMTextMessageBody class]]) {
+        EMTextMessageBody *textBody = body;
+        self.msgLabel.text = [textBody text];
+    }else if([body isKindOfClass:[EMVoiceMessageBody class]]){
+        self.msgLabel.attributedText = [self getVoiceAttText];
+    }else{
+        self.msgLabel.text = @"未知消息类型";
     }
-    
 }
 
 /**
- * 返回语音的富文本
+ * 获取声音的富文本
  */
--(NSAttributedString *)voiceAttStr:(EMVoiceMessageBody *)voiceBody{
+-(NSAttributedString *)getVoiceAttText{
+    // 1.获取消息体
+    EMVoiceMessageBody *body = self.message.messageBodies[0];
     
-    UIImage *voiceImg = nil;
-    BOOL isReceiver = [self.reuseIdentifier isEqualToString:receiverCellID];
-    if (isReceiver) {
-        voiceImg = [UIImage imageNamed:@"chat_receiver_audio_playing_full"];
-    }else{
-        voiceImg = [UIImage imageNamed:@"chat_sender_audio_playing_full"];
-    }
-
+    // 2.获取音频的时间
+    double duration = body.duration;
     
-    // 1.图片附件
-    NSTextAttachment *imgAttach = [[NSTextAttachment alloc] init];
-    imgAttach.image = voiceImg;
-    imgAttach.bounds = (CGRect){0, -10, 30,30};
-    // 2.图片富文本
-    NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imgAttach];
+    // 3.接收方(好友)
+    BOOL isReceiver = [self.reuseIdentifier isEqualToString:@"ReceiverCell"];
     
-    // 3.可变富文本
+    // 4.富文件
+    /** 接收方 ＝ 图片 + 时长
+     *  发送方 ＝ 时长 + 图片
+     */
     NSMutableAttributedString *attStrM = [[NSMutableAttributedString alloc] init];
-    
-    // 时间
-    NSString *timeStr = nil;
     if (isReceiver) {
-        timeStr = [NSString stringWithFormat:@"  %zd'",[voiceBody duration]];
+        // 拼接图片
+        [attStrM appendAttributedString:[self audioAtt:@"chat_receiver_audio_playing_full"]];
+        // 拼接时长
+        [attStrM appendAttributedString:[self timeAtt:duration]];
+        
     }else{
-        timeStr = [NSString stringWithFormat:@"%zd'  ",[voiceBody duration]];
+        // 拼接时长
+        [attStrM appendAttributedString:[self timeAtt:duration]];
+        
+        // 拼接图片
+        [attStrM appendAttributedString:[self audioAtt:@"chat_sender_audio_playing_full"]];
+        
     }
     
-    NSAttributedString *timeAttStr = [[NSAttributedString alloc] initWithString:timeStr];
-    
-    // 4.拼接图片
-    if (isReceiver) {
-        [attStrM appendAttributedString:imgStr];
-        [attStrM appendAttributedString:timeAttStr];
-    }else{
-        [attStrM appendAttributedString:timeAttStr];
-        [attStrM appendAttributedString:imgStr];
-    }
-    
-    // 设置字体大小
-    [attStrM addAttribute:NSFontAttributeName value:self.chatTextLabel.font range:NSMakeRange(0, attStrM.length)];
-    
+
+
     return [attStrM copy];
-    
 }
 
--(CGFloat)cellHeight{
-    // 重新布局子控件
-    [self layoutIfNeeded];
-//    KSLog(@"%@",NSStringFromCGRect(self.chatTextLabel.bounds));
+-(NSAttributedString *)timeAtt:(double)duration{
     
-    CGFloat label = self.chatTextLabel.bounds.size.height;
-    CGFloat cellHeight = 15 + label + 10 + 10;
-    return cellHeight;
+    NSString *timeStr = [NSString stringWithFormat:@"%.0lf '",duration];
+    return [[NSAttributedString alloc] initWithString:timeStr];
 }
+
+/** 音频图片*/
+-(NSAttributedString *)audioAtt:(NSString *)imgName{
+    NSTextAttachment *imgAttach = [[NSTextAttachment alloc] init];
+    imgAttach.image = [UIImage imageNamed:imgName];
+    NSAttributedString *audioAtt = [NSAttributedString attributedStringWithAttachment:imgAttach];
+    imgAttach.bounds = CGRectMake(0, -7, 25, 25);
+    return audioAtt;
+}
+
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    NSLog(@"%s",__func__);
+//
+//}
 
 @end

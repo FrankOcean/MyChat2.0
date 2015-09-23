@@ -9,8 +9,7 @@
 #import "KSChatCell.h"
 #import "KSAudioPlayTool.h"
 
-static NSString *SenderCell = @"SenderCell";
-static NSString *ReceiverCell = @"ReceiverCell";
+
 
 @implementation KSChatCell
 

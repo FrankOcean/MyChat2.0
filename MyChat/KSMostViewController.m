@@ -11,8 +11,6 @@
 
 @interface KSMostViewController()
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
-
-
 @end
 
 @implementation KSMostViewController
@@ -29,21 +27,14 @@
 
 - (IBAction)logoutAction:(UIButton *)logoutBtn {
     // 退出后，不再接收远程推送离线消息
-    
     UIView *rootView = self.view.window.rootViewController.view;
     
     [MBProgressHUD showMessag:@"正在退出中..." toView:rootView];
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
-        //睡两秒
-//        [NSThread sleepForTimeInterval:2];
         [MBProgressHUD hideHUDForView:rootView animated:YES];
-        NSLog(@"%@",[NSThread currentThread]);
-//        return;
-        if (!error) {//退出成功
-            NSLog(@"%@",info);
-            
-            
-            [MBProgressHUD showSuccess:@"退出成功" toView:self.view.window.rootViewController.view];
+        if (!error) {
+            KSLog(@"退出成功 %@",info);
+            [MBProgressHUD showSuccess:@"退出成功" toView:rootView];
             // 切换到登录控制器
             self.view.window.rootViewController = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
         }else{//退出失败

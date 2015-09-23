@@ -16,6 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+#warning 设置登录成功后，自动获取好友列表
+    [[EaseMob sharedInstance].chatManager setIsAutoFetchBuddyList:YES];
+    
     /*
      *registerSDKWithAppKey: 区别app的标识，开发者注册及管理后台
      apnsCertName: iOS中推送证书名称。制作与上传推送证书

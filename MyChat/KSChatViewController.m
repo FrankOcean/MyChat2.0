@@ -14,7 +14,6 @@
 #import "KSTimeTool.h"
 
 @interface KSChatViewController ()<UITableViewDataSource,UITableViewDelegate,EMChatManagerDelegate,UITextViewDelegate>
-#pragma mark 控件与约束
 /**聊天表格*/
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 /**计算cell高度的对象*/
@@ -49,7 +48,7 @@
 
 -(KSChatCell *)chatCellTool{
     if (!_chatCellTool) {
-        _chatCellTool = [self.tableView dequeueReusableCellWithIdentifier:@"ReceiverCell"];
+        _chatCellTool = [self.tableView dequeueReusableCellWithIdentifier:ReceiverCell];
     }
     return _chatCellTool;
 }
@@ -79,7 +78,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    [self scrollToBottom];
+    [self refreshDataAndScroll];
 }
 
 -(void)dealloc{
@@ -89,17 +88,12 @@
 
 #pragma mark -私有方法
 - (void)setupKeyboardObserver {
-   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-
-
 -(void)kbWillShow:(NSNotification *)notification{
     CGFloat kbHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    
     self.bottomConstraint.constant = kbHeight;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
@@ -113,17 +107,15 @@
 -(void)loadChatData{
     // 1.获取当前会话对象
     self.conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:self.buddy.username conversationType:eConversationTypeChat];
-    if (self.conversation) {//载20条
-        // 当前时间
-        long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
-        
-        NSArray *records = [self.conversation loadNumbersOfMessages:100 before:timestamp];
-        
-        // 遍历信息为已读
-        [records enumerateObjectsUsingBlock:^(EMMessage *msg, NSUInteger idx, BOOL *stop) {
-            [self addDataSourceWithMessage:msg];
-        }];
-    }
+    // 当前时间
+//    long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
+//    NSArray *records = [self.conversation loadNumbersOfMessages:100 before:timestamp];
+    NSArray *records = [self.conversation loadAllMessages];
+    
+    // 遍历信息为已读
+    [records enumerateObjectsUsingBlock:^(EMMessage *msg, NSUInteger idx, BOOL *stop) {
+        [self addDataSourceWithMessage:msg];
+    }];
 }
 
 #pragma mark 发送文字
@@ -137,7 +129,7 @@
 }
 
 -(void)sendWithRecordFile:(NSString *)filePath duration:(NSInteger)duration{
-    EMChatVoice *voice = [[EMChatVoice alloc] initWithFile:filePath displayName:@"[主意]"];
+    EMChatVoice *voice = [[EMChatVoice alloc] initWithFile:filePath displayName:@"[语音]"];
     EMVoiceMessageBody *voiceBody = [[EMVoiceMessageBody alloc] initWithChatObject:voice];
     voiceBody.duration = duration;
     [self sendMessageWithBody:voiceBody];
@@ -189,18 +181,14 @@
 
 
 -(void)refreshDataAndScroll{
-    [self.tableView reloadData];
-    
-    [self scrollToBottom];
-}
-
--(void)scrollToBottom{
     if (self.records.count == 0) {
         return;
     }
+    
+    [self.tableView reloadData];
+    
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.records.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
-
 
 #pragma mark -数据源方法
 
@@ -278,7 +266,6 @@
     //准备滑动表格时，要停止播放语音
     [KSAudioPlayTool stop];
 }
-
 
 #pragma mark -EMChatMamager代理
 #pragma mark 接收到好友发的消息

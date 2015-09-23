@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+static NSString *SenderCell = @"SenderCell";
+static NSString *ReceiverCell = @"ReceiverCell";
 
 @interface KSChatCell : UITableViewCell
 

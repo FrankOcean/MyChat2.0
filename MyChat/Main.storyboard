@@ -204,7 +204,7 @@
         <!--聊天界面2-->
         <scene sceneID="58l-Je-f2e">
             <objects>
-                <viewController storyboardIdentifier="KSChatViewController2" hidesBottomBarWhenPushed="YES" id="qt1-G9-MZC" userLabel="聊天界面2" customClass="KSChatViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KSChatViewController" hidesBottomBarWhenPushed="YES" id="qt1-G9-MZC" userLabel="聊天界面2" customClass="KSChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yZd-e4-pN3"/>
                         <viewControllerLayoutGuide type="bottom" id="54v-Iv-2Jq"/>

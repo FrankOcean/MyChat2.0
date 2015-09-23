@@ -36,7 +36,6 @@
 		B097ECDB1B8C5EFD0087A63D /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B097ECDA1B8C5EFD0087A63D /* EMAlertView.m */; };
 		B0B599B11BAD3DD000F60FC8 /* KSMostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B599B01BAD3DD000F60FC8 /* KSMostViewController.m */; };
 		B0BD4E9A1B8F200C0015C4A9 /* KSChatInputToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BD4E991B8F200C0015C4A9 /* KSChatInputToolBar.m */; };
-		B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C004281B8C60E900A360DA /* KSChatManagerTool.m */; };
 		B0C0042C1B8C6AC200A360DA /* KSContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C0042B1B8C6AC200A360DA /* KSContactsViewController.m */; };
 		B0E8B7CD1B8F353D0029E5D5 /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E8B7BF1B8F353D0029E5D5 /* EMAudioPlayerUtil.m */; };
 		B0E8B7CE1B8F353D0029E5D5 /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E8B7C11B8F353D0029E5D5 /* EMAudioRecorderUtil.m */; };
@@ -65,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B00DE3201BB2920A006C12DB /* ReadMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadMe.m; sourceTree = "<group>"; };
 		B04A9CAE1BAAA200003EE3C7 /* KSAudioPlayTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAudioPlayTool.h; sourceTree = "<group>"; };
 		B04A9CAF1BAAA200003EE3C7 /* KSAudioPlayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAudioPlayTool.m; sourceTree = "<group>"; };
 		B04A9CB41BABFFD1003EE3C7 /* KSTimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTimeTool.h; sourceTree = "<group>"; };
@@ -193,8 +193,6 @@
 		B0B599B01BAD3DD000F60FC8 /* KSMostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSMostViewController.m; sourceTree = "<group>"; };
 		B0BD4E981B8F200C0015C4A9 /* KSChatInputToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatInputToolBar.h; sourceTree = "<group>"; };
 		B0BD4E991B8F200C0015C4A9 /* KSChatInputToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatInputToolBar.m; sourceTree = "<group>"; };
-		B0C004271B8C60E900A360DA /* KSChatManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSChatManagerTool.h; sourceTree = "<group>"; };
-		B0C004281B8C60E900A360DA /* KSChatManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSChatManagerTool.m; sourceTree = "<group>"; };
 		B0C0042A1B8C6AC200A360DA /* KSContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSContactsViewController.h; sourceTree = "<group>"; };
 		B0C0042B1B8C6AC200A360DA /* KSContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSContactsViewController.m; sourceTree = "<group>"; };
 		B0E8B7BA1B8F353D0029E5D5 /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
@@ -325,6 +323,7 @@
 		B08FB8951B8AF6E80097FEEA = {
 			isa = PBXGroup;
 			children = (
+				B00DE3201BB2920A006C12DB /* ReadMe.m */,
 				B08FB8A01B8AF6E80097FEEA /* MyChat */,
 				B08FB8BA1B8AF6E80097FEEA /* MyChatTests */,
 				B08FB94C1B8AFF550097FEEA /* Dependences */,
@@ -346,13 +345,12 @@
 			children = (
 				B0B599AD1BAD3D9000F60FC8 /* Most【更多】 */,
 				B06E6C411B8D708F0017EFF3 /* Chat【聊天】 */,
-				B0C004261B8C60BD00A360DA /* KSChatManagerTool */,
 				B097ECD31B8C5A7D0087A63D /* Contacts【联系人】 */,
 				B0EEDE761B8C13D4002F1199 /* Recent【最近】 */,
+				B08FB8C71B8AF8F40097FEEA /* Login【登录注册】 */,
 				B08FB94D1B8B07D00097FEEA /* Lib */,
 				B08FB8CA1B8AF9D40097FEEA /* Xib */,
 				B08FB8C91B8AF9C80097FEEA /* Others */,
-				B08FB8C71B8AF8F40097FEEA /* Login */,
 				B08FB8AE1B8AF6E80097FEEA /* Images.xcassets */,
 				B08FB8A11B8AF6E80097FEEA /* Supporting Files */,
 			);
@@ -386,12 +384,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B08FB8C71B8AF8F40097FEEA /* Login */ = {
+		B08FB8C71B8AF8F40097FEEA /* Login【登录注册】 */ = {
 			isa = PBXGroup;
 			children = (
 				B08FB8C81B8AF8FB0097FEEA /* Controller */,
 			);
-			name = Login;
+			name = "Login【登录注册】";
 			sourceTree = "<group>";
 		};
 		B08FB8C81B8AF8FB0097FEEA /* Controller */ = {
@@ -766,15 +764,6 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		B0C004261B8C60BD00A360DA /* KSChatManagerTool */ = {
-			isa = PBXGroup;
-			children = (
-				B0C004271B8C60E900A360DA /* KSChatManagerTool.h */,
-				B0C004281B8C60E900A360DA /* KSChatManagerTool.m */,
-			);
-			name = KSChatManagerTool;
-			sourceTree = "<group>";
-		};
 		B0E8B7B81B8F353D0029E5D5 /* DeviceUtil */ = {
 			isa = PBXGroup;
 			children = (
@@ -1010,7 +999,6 @@
 				B0E8B7D01B8F353D0029E5D5 /* EMCDDeviceManager+Microphone.m in Sources */,
 				B06E6C8E1B8D7EA60017EFF3 /* THProgressView.m in Sources */,
 				B0F184651BA7C0FC00712C92 /* KSChatViewController.m in Sources */,
-				B0C004291B8C60E900A360DA /* KSChatManagerTool.m in Sources */,
 				B04A9CB91BAC09CC003EE3C7 /* KSTimeCell.m in Sources */,
 				B0BD4E9A1B8F200C0015C4A9 /* KSChatInputToolBar.m in Sources */,
 				B0E8B7CE1B8F353D0029E5D5 /* EMAudioRecorderUtil.m in Sources */,

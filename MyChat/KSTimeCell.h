@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface KSTimeCell : UITableViewCell
+
++(instancetype)timeCell:(UITableView *)tableView time:(NSString *)time;
+
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end

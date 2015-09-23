@@ -229,7 +229,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="voiceBtnClick:" destination="qt1-G9-MZC" eventType="touchUpInside" id="837-Kf-ybh"/>
+                                            <action selector="voiceAction:" destination="qt1-G9-MZC" eventType="touchUpInside" id="oMr-sa-yAl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x8-Tx-AMh" userLabel="add">

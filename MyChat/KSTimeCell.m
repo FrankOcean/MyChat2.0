@@ -10,16 +10,20 @@
 
 @implementation KSTimeCell
 
++(instancetype)timeCell:(UITableView *)tableView time:(NSString *)time{
+    static NSString *ID = @"TimeCell";
+    //1.创建cell
+    KSTimeCell *timeCell = [tableView dequeueReusableCellWithIdentifier:ID];
+    //2.设置时间
+    timeCell.timeLabel.text = time;
+    
+    return timeCell;
+}
+
 - (void)awakeFromNib {
     // Initialization code
     self.selectedBackgroundView = [[UIView alloc] init];
     self.backgroundColor = [UIColor clearColor];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 

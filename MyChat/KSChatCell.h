@@ -10,6 +10,9 @@
 
 
 @interface KSChatCell : UITableViewCell
+
++(instancetype)chatCell:(UITableView *)tableView message:(EMMessage *)message;
+
 @property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 
